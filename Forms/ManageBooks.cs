@@ -1,5 +1,6 @@
 ﻿using Controller;
 using Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,10 +18,10 @@ namespace Forms
         public readonly AuthorController author = new AuthorController();
         public readonly GenreController genre = new GenreController();
         public readonly BooksController book = new BooksController();
-        public ManageBooks(List<Author>list,List<Genre>genre)
+        public ManageBooks(List<Author> list, List<Genre> genre)
         {
             InitializeComponent();
-          
+
             foreach (var a in list)
             {
                 comboBox1.Items.Add($"{a.FirstName} {a.LastName}");
@@ -29,7 +30,7 @@ namespace Forms
             {
                 comboBox2.Items.Add(g.Name);
             }
-         
+
 
         }
         //private async void LoadDropdownData()
@@ -68,11 +69,11 @@ namespace Forms
                 var booksList = await book.GetAllAsync();
                 dataGridView1.DataSource = booksList.Select(b => new
                 {
-                     b.Id,
+                    b.Id,
                     b.Title,
-                   b.AvailableCopies,
+                    b.AvailableCopies,
                     b.Author.FirstName,
-                  b.Genre.Name
+                    b.Genre.Name
                 }).ToList();
             }
             catch (Exception ex)
@@ -84,7 +85,7 @@ namespace Forms
         private async void button1_Click(object sender, EventArgs e)
         {
 
-            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
             {
                 MessageBox.Show("Моля, въведете заглавие на книгата!");
                 return;
@@ -99,15 +100,15 @@ namespace Forms
                 MessageBox.Show("Моля, изберете жанр!");
                 return;
             }
-            if ( int.Parse(textBox1.Text)< 0)
+            if (int.Parse(textBox1.Text) < 0)
             {
                 MessageBox.Show("Моля, въведете валиден брой копия (цяло положително число)!");
                 return;
             }
-            string[]arr= comboBox1.SelectedItem.ToString().Split(' ');
-            int authorId =(await author.GetByNameAsync(arr[0], arr[1])).Id;
+            string[] arr = comboBox1.SelectedItem.ToString().Split(' ');
+            int authorId = (await author.GetByNameAsync(arr[0], arr[1])).Id;
             int genreId = genre.GetByNameID(comboBox2.SelectedItem.ToString()).Id;
-            string title = textBox1.Text;
+            string title = textBox2.Text;
             await book.AddAsync(title, authorId, genreId, int.Parse(textBox1.Text));
             MessageBox.Show("Книгата беше добавена успешно!");
 
@@ -120,5 +121,43 @@ namespace Forms
         {
             Close();
         }
+
+        private async void button4_Click(object sender, EventArgs e)
+        {
+            string searchTitle = textBox2.Text;
+            BooksController bookController = new BooksController();
+            List<Books> foundBooks = await bookController.GetByTitleAsync(searchTitle);
+            dataGridView1.DataSource = foundBooks.Select(b => new
+            {
+                b.Id,
+                b.Title,
+                b.Author.FirstName,
+                b.Genre.Name,
+                b.AvailableCopies
+            }).ToList();
+        }
+
+        private async void button5_Click(object sender, EventArgs e)
+        {
+          
+            if (string.IsNullOrEmpty(textBox3.Text)) 
+            {
+                MessageBox.Show(" въведете ID на книгата, която искате да изтриете");
+                return;
+            }        
+            int bookId = int.Parse(textBox3.Text);   
+            BooksController bookController = new BooksController();
+            bool isDeleted = await bookController.DeleteByIdAsync(bookId);
+            if (isDeleted)
+            {
+                MessageBox.Show("Книгата беше изтрита успешно от системата!");
+               textBox3.Clear();             
+            }
+            else
+            {
+                MessageBox.Show(" Не е намерена книга с такова ID ");
+            }
+        }
     }
-}
+    }
+

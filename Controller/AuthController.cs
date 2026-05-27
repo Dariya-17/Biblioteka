@@ -26,7 +26,7 @@ namespace Controller
         {     
                 if (await _context.Users.AnyAsync(u => u.UserName == username))
                 {
-                    return "Потребителското име вече е заето!";
+                    return "Потребителското име вече е заето";
                 }
                 var newAdmin = new User
                 {

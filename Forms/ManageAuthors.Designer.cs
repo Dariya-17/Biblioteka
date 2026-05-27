@@ -36,6 +36,7 @@
             textBox1 = new TextBox();
             textBox2 = new TextBox();
             button3 = new Button();
+            button4 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -52,10 +53,10 @@
             // 
             // button2
             // 
-            button2.Location = new Point(389, 33);
+            button2.Location = new Point(391, 28);
             button2.Margin = new Padding(4);
             button2.Name = "button2";
-            button2.Size = new Size(141, 61);
+            button2.Size = new Size(141, 64);
             button2.TabIndex = 1;
             button2.Text = "Show";
             button2.UseVisualStyleBackColor = true;
@@ -120,12 +121,23 @@
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
+            // button4
+            // 
+            button4.Location = new Point(567, 30);
+            button4.Name = "button4";
+            button4.Size = new Size(183, 64);
+            button4.TabIndex = 8;
+            button4.Text = "Show the author by name";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            // 
             // ManageAuthors
             // 
             AutoScaleDimensions = new SizeF(12F, 26F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = Properties.Resources.day_authors_2023;
             ClientSize = new Size(999, 707);
+            Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
@@ -154,5 +166,6 @@
         private TextBox textBox1;
         private TextBox textBox2;
         private Button button3;
+        private Button button4;
     }
 }

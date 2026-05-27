@@ -1,4 +1,5 @@
 ﻿using Controller;
+using Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -71,6 +72,30 @@ namespace Forms
         private void button3_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private async void button4_Click(object sender, EventArgs e)
+        {
+            string searchFirstName = textBox1.Text; 
+            string searchLastName = textBox2.Text;            
+            AuthorController authorController = new AuthorController();          
+            Author foundAuthor = await authorController.GetByNameAsync(searchFirstName, searchLastName); 
+            if (foundAuthor != null)
+            {
+     
+              var authorList = new List<Author> { foundAuthor };       
+              dataGridView1.DataSource = authorList.Select(a => new
+                {
+                a.Id,
+                 a.FirstName,
+                 a.LastName,   
+                }).ToList(); 
+            }
+            else
+            { 
+                dataGridView1.DataSource = null;
+                MessageBox.Show("Няма намерен автор с тези имена!");
+            }
         }
     }
 }

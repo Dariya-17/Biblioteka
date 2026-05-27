@@ -32,6 +32,14 @@ namespace Controller
                 .Include(b => b.Author).Include(b => b.Genre)
                 .Where(b => b.Title==title).ToListAsync();
         }
+        public async Task<bool> DeleteByIdAsync(int id)
+        {   
+            var book = await _context.Books.FindAsync(id);        
+            if (book == null) return false;
+            _context.Books.Remove(book);
+            await _context.SaveChangesAsync();
+            return true; 
+        }
     }
 }
 

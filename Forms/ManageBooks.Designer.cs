@@ -41,6 +41,10 @@
             button2 = new Button();
             dataGridView1 = new DataGridView();
             button3 = new Button();
+            button4 = new Button();
+            button5 = new Button();
+            textBox3 = new TextBox();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -170,6 +174,44 @@
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
+            // button4
+            // 
+            button4.Location = new Point(582, 260);
+            button4.Name = "button4";
+            button4.Size = new Size(129, 92);
+            button4.TabIndex = 12;
+            button4.Text = "Show the book by the title";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
+            // 
+            // button5
+            // 
+            button5.Location = new Point(582, 373);
+            button5.Name = "button5";
+            button5.Size = new Size(129, 58);
+            button5.TabIndex = 13;
+            button5.Text = "Delete by Id ";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(256, 36);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(198, 35);
+            textBox3.TabIndex = 14;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.White;
+            label5.Font = new Font("Yu Gothic", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label5.Location = new Point(76, 45);
+            label5.Name = "label5";
+            label5.Size = new Size(152, 26);
+            label5.TabIndex = 15;
+            label5.Text = "ID of the Book";
+            // 
             // ManageBooks
             // 
             AutoScaleDimensions = new SizeF(11F, 22F);
@@ -177,6 +219,10 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1082, 536);
+            Controls.Add(label5);
+            Controls.Add(textBox3);
+            Controls.Add(button5);
+            Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(dataGridView1);
             Controls.Add(button2);
@@ -213,5 +259,9 @@
         private Button button2;
         private DataGridView dataGridView1;
         private Button button3;
+        private Button button4;
+        private Button button5;
+        private TextBox textBox3;
+        private Label label5;
     }
 }
