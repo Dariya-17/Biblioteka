@@ -11,6 +11,14 @@ namespace Data
 {
     public class LibraryDbContext:DbContext
     {
+        public LibraryDbContext()
+        {
+
+        }
+        public LibraryDbContext(DbContextOptions<LibraryDbContext>options):base(options)
+        {
+
+        }
         public DbSet<User> Users { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Genre> Genres { get; set; }
@@ -19,11 +27,14 @@ namespace Data
         public DbSet<Reader> Readers { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var builder = new ConfigurationBuilder();
-            builder.AddJsonFile("nz.json");
-            var config = builder.Build();
-            string conString = config.GetConnectionString("DefaultConnection");
-            optionsBuilder.UseSqlServer(conString);
+            if (!optionsBuilder.IsConfigured)
+            {
+                var builder = new ConfigurationBuilder();
+                builder.AddJsonFile("nz.json");
+                var config = builder.Build();
+                string conString = config.GetConnectionString("DefaultConnection");
+                optionsBuilder.UseSqlServer(conString);
+            }
         }
     }
 }

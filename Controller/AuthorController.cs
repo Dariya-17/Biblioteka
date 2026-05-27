@@ -12,6 +12,14 @@ namespace Controller
     public class AuthorController
     {
         LibraryDbContext DbContext = new LibraryDbContext();
+        public AuthorController()
+        {
+
+        }
+        public AuthorController(LibraryDbContext c)
+        {
+            this.DbContext= c;
+        }
         public async Task<List<Author>> GetAllAuthors()
         {
             return await DbContext.Authors.ToListAsync();

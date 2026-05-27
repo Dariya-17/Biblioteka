@@ -11,20 +11,30 @@ using System.ComponentModel.Design;
 
 namespace Controller
 {
-    public class AuthController
+    public class RegisterLoginController
     {
-        private readonly LibraryDbContext _context = new LibraryDbContext();
-       
+        private readonly LibraryDbContext context = new LibraryDbContext();
+
+
+        public RegisterLoginController()
+        {
+
+        }
+        public RegisterLoginController(LibraryDbContext c)
+        {
+            this.context = c;
+        }
+
         public async Task<User> LoginAsync(string username, string password)
         {
-            return await _context.Users.Include(u => u.Borrowings) 
+            return await context.Users.Include(u => u.Borrowings) 
                 .ThenInclude(b => b.Book)   
                 .Include(u => u.Books)        
                 .FirstOrDefaultAsync(u => u.UserName == username && u.Password == password);
         }
         public async Task<string> RegisterAdminAsync(string username, string password, RoleType role)
         {     
-                if (await _context.Users.AnyAsync(u => u.UserName == username))
+                if (await context.Users.AnyAsync(u => u.UserName == username))
                 {
                     return "Потребителското име вече е заето";
                 }
@@ -34,14 +44,14 @@ namespace Controller
                     Password = password,
                     Role = RoleType.Admin 
                 };
-                await _context.Users.AddAsync(newAdmin);
-                await _context.SaveChangesAsync();
-                return "Успешна регистрация ";       
+                await context.Users.AddAsync(newAdmin);
+                await context.SaveChangesAsync();
+                return "Успешна регистрация";       
         }
 
         public async Task<bool> RegisterAsync(string username, string password, string firstName, string lastName, string email, string phone, RoleType role)
         { 
-            if (await _context.Users.AnyAsync(u => u.UserName == username))
+            if (await context.Users.AnyAsync(u => u.UserName == username))
             {
                 return false;
             }    
@@ -51,8 +61,8 @@ namespace Controller
                 Password = password,
                 Role = role
             };
-            await _context.Users.AddAsync(newUser);
-            await _context.SaveChangesAsync(); 
+            await context.Users.AddAsync(newUser);
+            await context.SaveChangesAsync(); 
             if (role == RoleType.Reader)
             {
                 var newReader = new Reader
@@ -64,8 +74,8 @@ namespace Controller
                     UserId = newUser.Id
                 };
 
-                await _context.Readers.AddAsync(newReader);
-                await _context.SaveChangesAsync(); 
+                await context.Readers.AddAsync(newReader);
+                await context.SaveChangesAsync(); 
             }
             return true;
         }

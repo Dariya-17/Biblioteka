@@ -18,7 +18,7 @@ namespace Forms
         public RegisterForm()
         {
             InitializeComponent();
-            //comboBox1.Items.Add("Admin");
+        
             
             
         }
@@ -31,7 +31,7 @@ namespace Forms
 
             if (string.IsNullOrWhiteSpace(username))
             {
-                MessageBox.Show("Невалидно потребителско име!");
+                MessageBox.Show("Невалидно потребителско име");
                 textBox1.Clear();
                 textBox2.Clear();
                 textBox3.Clear();
@@ -39,7 +39,7 @@ namespace Forms
             }
             if (string.IsNullOrWhiteSpace(password))
             {
-                MessageBox.Show("Невалидна парола!");
+                MessageBox.Show("Невалидна парола");
                 textBox1.Clear();
                 textBox2.Clear();
                 textBox3.Clear();
@@ -47,7 +47,7 @@ namespace Forms
             }
             if (string.IsNullOrWhiteSpace(password2))
             {
-                MessageBox.Show("Невалидна парола!");
+                MessageBox.Show("Невалидна парола");
                 textBox1.Clear();
                 textBox2.Clear();
                 textBox3.Clear();
@@ -55,13 +55,13 @@ namespace Forms
             }
             if (password2 != password)
             {
-                MessageBox.Show("Грешна парола!");
+                MessageBox.Show("Грешна парола");
                 textBox1.Clear();
                 textBox2.Clear();
                 textBox3.Clear();
                 return;
             }
-            AuthController controller = new AuthController();
+            Controller.RegisterLoginController controller = new Controller.RegisterLoginController();
             RoleType role = new RoleType();
            
              role = RoleType.Admin;
@@ -72,7 +72,7 @@ namespace Forms
                 Password = password,
                 Role = role
             };
-            await controller.RegisterAdminAsync(username, password, role);
+            await controller.RegisterAdminAsync(username, password,role);
             DialogResult = DialogResult.OK;
             textBox1.Clear();
                 textBox2.Clear();

@@ -11,33 +11,41 @@ namespace Controller
 {
     public class BooksController
     {
-        LibraryDbContext _context = new LibraryDbContext();
+        LibraryDbContext context = new LibraryDbContext();
+        public BooksController()
+        {
+
+        }
+        public BooksController(LibraryDbContext c)
+        {
+            this.context = c;
+        }
         public async Task<List<Books>> GetAllAsync()
         {
-            return await _context.Books.Include(b => b.Author).Include(b => b.Genre).ToListAsync();
+            return await context.Books.Include(b => b.Author).Include(b => b.Genre).ToListAsync();
         }
         public async Task<List<Books>> GetAvailableAsync()
         {
-           return await _context.Books.Include(b => b.Author).Where(b => b.AvailableCopies > 0).ToListAsync();
+           return await context.Books.Include(b => b.Author).Where(b => b.AvailableCopies > 0).ToListAsync();
         }
         public async Task AddAsync(string title, int authorId, int genreId, int copies)
         {
-            _context.Books.Add(new Books { Title = title, AuthorId = authorId, GenreId = genreId, AvailableCopies = copies });
-            await _context.SaveChangesAsync();
+            context.Books.Add(new Books { Title = title, AuthorId = authorId, GenreId = genreId, AvailableCopies = copies });
+            await context.SaveChangesAsync();
         }
         public async Task<List<Books>> GetByTitleAsync(string title)
         {
             if (string.IsNullOrWhiteSpace(title)) return await GetAllAsync();
-            return await _context.Books
+            return await context.Books
                 .Include(b => b.Author).Include(b => b.Genre)
                 .Where(b => b.Title==title).ToListAsync();
         }
         public async Task<bool> DeleteByIdAsync(int id)
         {   
-            var book = await _context.Books.FindAsync(id);        
+            var book = await context.Books.FindAsync(id);        
             if (book == null) return false;
-            _context.Books.Remove(book);
-            await _context.SaveChangesAsync();
+            context.Books.Remove(book);
+            await context.SaveChangesAsync();
             return true; 
         }
     }

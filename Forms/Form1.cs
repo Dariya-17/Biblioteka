@@ -31,7 +31,7 @@ namespace Forms
             string username = textBox1.Text;
             string password = textBox2.Text;
 
-            AuthController authController = new AuthController();
+            Controller.RegisterLoginController authController = new Controller.RegisterLoginController();
             User loggedInUser = await authController.LoginAsync(username, password);
 
             if (loggedInUser != null)

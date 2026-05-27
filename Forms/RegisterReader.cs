@@ -15,7 +15,7 @@ namespace Forms
 {
     public partial class RegisterReader : Form
     {
-        private readonly AuthController controller = new AuthController();
+        private readonly Controller.RegisterLoginController controller = new Controller.RegisterLoginController();
         private readonly ReaderController readerController = new ReaderController();
 
         public RegisterReader()
@@ -41,7 +41,7 @@ namespace Forms
 
             if (string.IsNullOrWhiteSpace(username))
             {
-                MessageBox.Show("Невалидно потребителско име!");
+                MessageBox.Show("Невалидно потребителско име");
                 textBox1.Clear();
                 textBox2.Clear();
                 textBox3.Clear();
@@ -49,7 +49,7 @@ namespace Forms
             }
             if (string.IsNullOrWhiteSpace(password))
             {
-                MessageBox.Show("Невалидна парола!");
+                MessageBox.Show("Невалидна парола");
                 textBox1.Clear();
                 textBox2.Clear();
                 textBox3.Clear();
@@ -57,7 +57,7 @@ namespace Forms
             }
             if (string.IsNullOrWhiteSpace(password2))
             {
-                MessageBox.Show("Невалидна парола!");
+                MessageBox.Show("Невалидна парола");
                 textBox1.Clear();
                 textBox2.Clear();
                 textBox3.Clear();
@@ -65,19 +65,19 @@ namespace Forms
             }
             if (password2 != password)
             {
-                MessageBox.Show("Грешна парола!");
+                MessageBox.Show("Грешна парола");
                 textBox1.Clear();
                 textBox2.Clear();
                 textBox3.Clear();
                 return;
             }
-            AuthController controller = new AuthController();
+            Controller.RegisterLoginController controller = new Controller.RegisterLoginController();
             RoleType role = RoleType.Reader;
           
             if(await controller.RegisterAsync(username, password, fnama, lname, email, phone, role)==true)
             {
                 DialogResult = DialogResult.OK;
-                MessageBox.Show("Успешна регистрация!");    
+                MessageBox.Show("Успешна регистрация");    
             }
             else
             {
