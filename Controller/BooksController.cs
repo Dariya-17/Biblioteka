@@ -35,7 +35,7 @@ namespace Controller
         }
         public async Task<List<Books>> GetByTitleAsync(string title)
         {
-            if (string.IsNullOrWhiteSpace(title)) return await GetAllAsync();
+            if (string.IsNullOrWhiteSpace(title)) return new List<Books>();
             return await context.Books
                 .Include(b => b.Author).Include(b => b.Genre)
                 .Where(b => b.Title==title).ToListAsync();

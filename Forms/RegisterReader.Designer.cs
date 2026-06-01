@@ -209,7 +209,7 @@
             panel1.Controls.Add(textBox2);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(textBox3);
-            panel1.Location = new Point(21, 77);
+            panel1.Location = new Point(21, 93);
             panel1.Name = "panel1";
             panel1.Size = new Size(424, 195);
             panel1.TabIndex = 18;
@@ -224,7 +224,7 @@
             panel2.Controls.Add(textBox4);
             panel2.Controls.Add(textBox6);
             panel2.Controls.Add(textBox5);
-            panel2.Location = new Point(21, 278);
+            panel2.Location = new Point(21, 294);
             panel2.Name = "panel2";
             panel2.Size = new Size(424, 251);
             panel2.TabIndex = 10;

@@ -56,7 +56,7 @@ namespace Forms
 
             if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox2.Text))
             {
-                MessageBox.Show("Моля, попълнете както името, така и фамилията на автора!");
+                MessageBox.Show("Моля, попълнете както името, така и фамилията на автора");
                 return;
             }
             string resultMessage = await _authorController.AddAuthor(textBox1.Text, textBox2.Text);

@@ -24,10 +24,11 @@ namespace Forms
             string j = textBox1.Text;
             if (string.IsNullOrEmpty(j))
             {
-                MessageBox.Show("Невалидно име на жанр!");
+                MessageBox.Show("Невалидно име на жанр");
+                return;
             }
             await genre.AddAsync(j);
-            MessageBox.Show("Успешно добавяне на жанр!");
+            MessageBox.Show("Успешно добавяне на жанр");
             textBox1.Clear();
         }
 
@@ -40,7 +41,7 @@ namespace Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Грешка при зареждане на жанровете: " + ex.Message);
+                MessageBox.Show("Грешка при зареждане на жанровете " );
             }
         }
 

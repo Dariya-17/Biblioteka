@@ -33,29 +33,7 @@ namespace Forms
 
 
         }
-        //private async void LoadDropdownData()
-        //{
-        //    try
-        //    {
-
-        //        var authors = await author.GetAllAuthors();
-        //        comboBox1.DataSource = authors;
-        //        comboBox1.DisplayMember = "FirstName " + "LastName";
-        //        comboBox1.DisplayMember = "LastName "/* + "LastName"*/;
-        //        //comboBox1.ValueMember = "Id";
-        //        //comboBox1.SelectedIndex = -1;
-        //        var genres = await genre.GetAllAsync();
-        //        comboBox2.DataSource = genres;
-        //        comboBox2.DisplayMember = "Name";
-        //        //comboBox2.ValueMember = "Id";
-        //        //comboBox2.SelectedIndex = -1;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show($"Грешка при зареждане  {ex.Message}");
-        //    }
-        //}
-
+       
         private void ManageBooks_Load(object sender, EventArgs e)
         {
 
@@ -87,29 +65,29 @@ namespace Forms
 
             if (string.IsNullOrWhiteSpace(textBox2.Text))
             {
-                MessageBox.Show("Моля, въведете заглавие на книгата!");
+                MessageBox.Show(" въведете заглавие на книгата");
                 return;
             }
             if (comboBox1.SelectedItem == null)
             {
-                MessageBox.Show("Моля, изберете автор!");
+                MessageBox.Show(" изберете автор!");
                 return;
             }
             if (comboBox2.SelectedItem == null)
             {
-                MessageBox.Show("Моля, изберете жанр!");
+                MessageBox.Show(" изберете жанр!");
                 return;
             }
             if (int.Parse(textBox1.Text) < 0)
             {
-                MessageBox.Show("Моля, въведете валиден брой копия (цяло положително число)!");
+                MessageBox.Show(" въведете валиден брой копия ");
                 return;
             }
             string[] arr = comboBox1.SelectedItem.ToString().Split(' ');
             int authorId = (await author.GetByNameAsync(arr[0], arr[1])).Id;
-            int genreId = genre.GetByNameID(comboBox2.SelectedItem.ToString()).Id;
+           Genre genre=await this.genre.GetByNameID(comboBox2.SelectedItem.ToString());
             string title = textBox2.Text;
-            await book.AddAsync(title, authorId, genreId, int.Parse(textBox1.Text));
+            await book.AddAsync(title, authorId, genre.Id, int.Parse(textBox1.Text));
             MessageBox.Show("Книгата беше добавена успешно!");
 
             textBox1.Clear();
@@ -127,6 +105,11 @@ namespace Forms
             string searchTitle = textBox2.Text;
             BooksController bookController = new BooksController();
             List<Books> foundBooks = await bookController.GetByTitleAsync(searchTitle);
+            if(foundBooks.Count == 0)
+            {
+                MessageBox.Show("Няма намерени книги с това заглавие.");
+                return;
+            }
             dataGridView1.DataSource = foundBooks.Select(b => new
             {
                 b.Id,
