@@ -31,7 +31,7 @@ namespace TestProject1.Services
             Assert.AreEqual("admin3", user.UserName);
         }
         [Test]
-        public async Task RegisterAdminAsyncTest()
+        public async Task RegisterAdminATest()
         {
             var context = TestDb.CreateContext(); 
             context.Users.Add(new User
@@ -46,7 +46,7 @@ namespace TestProject1.Services
             Assert.IsNotNull(nz);
             Assert.AreEqual("Успешна регистрация", nz );
         }
-        public async Task RegisterAsync_ShouldReturnTrue_WhenUserIsNewAndIsReader()
+        public async Task Register()
         {
             var context = TestDb.CreateContext();
             string username = "newReader";
@@ -68,7 +68,7 @@ namespace TestProject1.Services
             Assert.AreEqual(lastName, readerInDb.LastName);
         }
         [Test]
-        public async Task RegisterAsync_ShouldReturnFalse_WhenUsernameAlreadyExists()
+        public async Task Register_False()
         {
             var context = TestDb.CreateContext();
             RegisterLoginController controller = new RegisterLoginController(context);
