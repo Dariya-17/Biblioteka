@@ -27,17 +27,18 @@ namespace Forms
             using (var context = new LibraryDbContext())
             {
 
-                var userBorrowings = await context.Borrowings
-                    .Include(b => b.Book)
-                    .Where(b => b.ReaderId == Form1.LoggedInReader.Id)
-                    .Select(b => new
-                    {
-                        b.Id,
-                        b.BookId,
-                        b.BorrowedDate,
-                        b.ReturnedDate
-                    })
-                    .ToListAsync();
+          var userBorrowings = await context.Borrowings
+        .Include(b => b.Reader)
+        .Where(b => b.ReaderId == Form1.LoggedInReader.Id)
+        .Select(b => new
+        {
+            b.Id,
+           b.Book.Title,
+             b.Reader.FirstName,
+           b.BorrowedDate,
+            b.ReturnedDate
+        })
+        .ToListAsync();
                 dataGridView1.DataSource = userBorrowings;
             }
         }

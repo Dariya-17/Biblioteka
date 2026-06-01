@@ -56,33 +56,6 @@ namespace Forms
             textBox1.Clear();
            textBox2.Clear();
         }
-        //AuthController nz = new AuthController();
-        //    string username = textBox1.Text;
-        //    string password = textBox2.Text;
-        // User user = await nz.LoginAsync(username, password);
-        //    if (user == null)
-        //    {
-        //        MessageBox.Show("Грешно потребителско име или парола!");
-        //        return;
-        //    }
-        //    else
-        //    {
-        //        if (user.Role == RoleType.Admin)
-        //        {
-        //            Admin a = new Admin();
-        //            a.ShowDialog();
-        //        }
-        //        else if (user.Role == RoleType.Reader)
-        //        {
-        //            ReaderFF r = new ReaderFF();
-        //            r.ShowDialog();
-        //        }
-        //    }
-
-        //    textBox1.Clear();
-        //    textBox2.Clear();
-
-        //}
 
         private void button2_Click_1(object sender, EventArgs e)
         {
