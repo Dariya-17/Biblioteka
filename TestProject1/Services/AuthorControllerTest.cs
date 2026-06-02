@@ -43,7 +43,7 @@ namespace TestProject1.Services
             context.Authors.Add(existingAuthor);
             await context.SaveChangesAsync();           
             AuthorController controller = new AuthorController(context);           
-            Author result = await controller.GetByNameAsync("Елин", "Пелин");                   
+            Author result = await controller.GetByName("Елин", "Пелин");                   
             Assert.AreEqual("Елин", result.FirstName);
             Assert.AreEqual("Пелин", result.LastName);
             Assert.AreEqual(existingAuthor.Id, result.Id); 

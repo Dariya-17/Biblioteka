@@ -21,7 +21,7 @@ namespace TestProject1.Services
             context.Genres.Add(new Genre { Name = "Ужаси" });
             await context.SaveChangesAsync();
             GenreController controller = new GenreController(context);
-            List<Genre> result = await controller.GetAllAsync();
+            List<Genre> result = await controller.GetAll();
             Assert.IsNotNull(result);
             Assert.AreEqual(2, result.Count);
             Assert.AreEqual("Фентъзи", result[0].Name);
@@ -33,7 +33,7 @@ namespace TestProject1.Services
             var context = TestDb.CreateContext();
             GenreController controller = new GenreController(context);
             string genreName = " фантастика";
-            await controller.AddAsync(genreName);     
+            await controller.Add(genreName);     
             var genreInDb = await context.Genres.FirstOrDefaultAsync(g => g.Name == genreName);
             Assert.IsNotNull(genreInDb);
             Assert.AreEqual(genreName, genreInDb.Name);
@@ -47,7 +47,7 @@ namespace TestProject1.Services
             context.Genres.Add(new Genre { Name = "Драма" });
             await context.SaveChangesAsync();
            GenreController controller = new GenreController(context);           
-            List<Genre> result = await controller.GetByNameAsync("Трилър");          
+            List<Genre> result = await controller.GetByName("Трилър");          
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result.Count);
             Assert.AreEqual("Трилър", result[0].Name);
