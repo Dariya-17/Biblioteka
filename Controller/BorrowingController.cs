@@ -39,15 +39,30 @@ namespace Controller
            await context.SaveChangesAsync();
             return true;
         }
-        public async Task ReturnBook(int borrowingId)
+        public async Task<string> ReturnBook(int borrowingId)
         {
-            var borrowing = await context.Borrowings.Include(b => b.Book).FirstOrDefaultAsync(b => b.Id == borrowingId);
-            if (borrowing != null)
+            if (borrowingId <= 0)
             {
-                borrowing.ReturnedDate = DateTime.Parse(Console.ReadLine());
-                borrowing.Book.AvailableCopies++;
-                await context.SaveChangesAsync();
+                return " Невалидно ID ";
             }
+            var borrowing = await context.Borrowings
+                .Include(b => b.Book)
+                .FirstOrDefaultAsync(b => b.Id == borrowingId);        
+            if (borrowing == null)
+            {
+                return " Записът за заемане не беше намерен";
+            }         
+            if (borrowing.ReturnedDate != null)
+            {
+                return " Тази книга вече е отбелязана като върната";
+            }         
+            if (borrowing.Book != null)
+            {
+                borrowing.Book.AvailableCopies++;
+            }
+
+            await context.SaveChangesAsync();
+            return "Книгата беше върната успешно";
         }
         public async Task<List<Borrowing>> GetByReaderName(string fName,string lname)
         {

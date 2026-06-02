@@ -26,11 +26,39 @@ namespace Controller
             return await context.Readers.ToListAsync();
 
         }
-        public async Task Add(string firstName, string lastName, string email, string phone,string username,string password)
+        public async Task<string> Add(string firstName, string lastName, string email, string phone,string username,string password)
         {
+            if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName))
+            {
+                return " Имената на читателя са задължителни!";
+            }
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(phone))
+            {
+                return " Имейлът и телефонният номер са задължителни полета!";
+            }         
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            {
+                return " Потребителското име и паролата са задължителни!";
+            }      
+            firstName = firstName.Trim();
+            lastName = lastName.Trim();
+            email = email.Trim();
+            phone = phone.Trim();
+            username = username.Trim();        
+            bool isUsernameTaken = await context.Users.AnyAsync(u => u.UserName == username);
+            if (isUsernameTaken)
+            {
+                return $" Потребителското име '{username}' вече е заето!";
+            }       
+            bool readerExists = await context.Readers.AnyAsync(r => r.Email == email || (r.FirstName == firstName && r.LastName == lastName));
+            if (readerExists)
+            {
+                return "Вече съществува читател с тези имена или този имейл адрес";
+            }           
             context.Readers.Add(new Reader { FirstName = firstName, LastName = lastName, Email = email, PhoneNumber = phone });
-           context.Users.Add(new User { UserName=username,Password=password});
-            context.SaveChanges();
+            context.Users.Add(new User { UserName = username, Password = password });        
+            await context.SaveChangesAsync();
+            return "Читателят беше регистриран успешно";
         }
         public async Task<List<Reader>> GetByName(string Fname,string lname)
         {

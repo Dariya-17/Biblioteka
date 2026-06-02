@@ -24,10 +24,22 @@ namespace Controller
         {
             return await context.Genres.ToListAsync();
         }
-        public async Task Add(string name)
+        public async Task<string> Add(string name)
         {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return " Името на жанра е задължително";
+            }   
+            name = name.Trim();    
+            bool genreExists = await IsGenreExisting(name);
+            if (genreExists)
+            {
+                return $" Жанрът '{name}' вече съществува ";
+            }       
             context.Genres.Add(new Genre { Name = name });
             await context.SaveChangesAsync();
+
+            return "Жанрът беше добавен успешно";
         }
         public async Task<List<Genre>> GetByName(string name)
         {
@@ -36,11 +48,23 @@ namespace Controller
         }
         public async Task<Genre> GetByNameID(string name)
         {
-            return await context.Genres.FirstOrDefaultAsync(g => g.Name == name);
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return null;
+            }
+
+            return await context.Genres
+                .FirstOrDefaultAsync(g => g.Name.Trim() == name.Trim()); ;
         }
         public async Task<bool> IsGenreExisting(string name)
-        {      
-            return await context.Genres.AnyAsync(g => g.Name == name);
+        {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return false;
+            }
+
+            return await context.Genres
+                .AnyAsync(g => g.Name.Trim() == name.Trim());
         }
     }
 }

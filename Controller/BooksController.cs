@@ -35,22 +35,41 @@ namespace Controller
         }
         public async Task<List<Books>> GetByTitle(string title)
         {
-            if (string.IsNullOrWhiteSpace(title)) return new List<Books>();
+            if (string.IsNullOrWhiteSpace(title))
+            {
+                return new List<Books>();
+            }
+
             return await context.Books
-                .Include(b => b.Author).Include(b => b.Genre)
-                .Where(b => b.Title==title).ToListAsync();
+                .Include(b => b.Author)
+                .Include(b => b.Genre)
+                .Where(b => b.Title.Trim() == title.Trim())
+                .ToListAsync();
         }
         public async Task<bool> DeleteById(int id)
-        {   
-            var book = await context.Books.FindAsync(id);        
-            if (book == null) return false;
+        {
+            if (id <= 0)
+            {
+                return false;
+            }
+
+            var book = await context.Books.FindAsync(id);
+            if (book == null)
+            {
+                return false;
+            }
+
             context.Books.Remove(book);
             await context.SaveChangesAsync();
-            return true; 
+            return true;
         }
         public async Task<bool> IsBookTitleTaken(string title)
         {
-           
+            if(string.IsNullOrWhiteSpace(title))
+        {
+                return false;
+            }
+
             return await context.Books.AnyAsync(b => b.Title == title);
         }
     }

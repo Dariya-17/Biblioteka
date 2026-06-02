@@ -71,7 +71,7 @@ namespace Forms
             }
             if (comboBox1.SelectedItem == null)
             {
-                MessageBox.Show(" изберете автор!");
+                MessageBox.Show(" изберете автор");
                 return;
             }
             if (comboBox2.SelectedItem == null)
@@ -79,7 +79,7 @@ namespace Forms
                 MessageBox.Show(" изберете жанр");
                 return;
             }
-            if (int.Parse(textBox1.Text) < 0)
+            if (int.Parse(textBox1.Text) == 0|| string.IsNullOrWhiteSpace(textBox1.Text))
             {
                 MessageBox.Show(" въведете валиден брой копия ");
                 return;
