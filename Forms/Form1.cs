@@ -51,7 +51,7 @@ namespace Forms
             }
             else
             {
-                MessageBox.Show("Грешно потребителско име или парола!");
+                MessageBox.Show("Грешно потребителско име или парола");
             }
             textBox1.Clear();
            textBox2.Clear();

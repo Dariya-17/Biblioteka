@@ -43,7 +43,7 @@ namespace Forms
         {
             if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox2.Text))
             {
-                MessageBox.Show("Моля, попълнете както името, така и фамилията на автора");
+                MessageBox.Show(" Попълнете както името и фамилията на автора");
                 return;
             }
 

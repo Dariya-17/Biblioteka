@@ -57,7 +57,7 @@ namespace Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Грешка при извеждане на книгите: {ex.Message}");
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -76,7 +76,7 @@ namespace Forms
             }
             if (comboBox2.SelectedItem == null)
             {
-                MessageBox.Show(" изберете жанр!");
+                MessageBox.Show(" изберете жанр");
                 return;
             }
             if (int.Parse(textBox1.Text) < 0)
@@ -96,7 +96,7 @@ namespace Forms
             int authorId = (await author.GetByName(arr[0], arr[1])).Id;
             Genre genre = await this.genre.GetByNameID(comboBox2.SelectedItem.ToString());
             await book.AddAsync(title, authorId, genre.Id, int.Parse(textBox1.Text));
-            MessageBox.Show("Книгата беше добавена успешно!");
+            MessageBox.Show("Книгата беше добавена успешно");
 
             textBox1.Clear();
             textBox2.Clear();
