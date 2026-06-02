@@ -48,7 +48,10 @@ namespace Controller
                 await context.SaveChangesAsync();
                 return "Успешна регистрация";       
         }
-
+        public async Task<bool> IsUsernameTaken(string username)
+        {
+            return await context.Users.AnyAsync(u => u.UserName == username);
+        }
         public async Task<bool> RegisterAsync(string username, string password, string firstName, string lastName, string email, string phone, RoleType role)
         { 
             if (await context.Users.AnyAsync(u => u.UserName == username))

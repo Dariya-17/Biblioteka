@@ -21,7 +21,7 @@ namespace Forms
         public RegisterReader()
         {
             InitializeComponent();
-          
+
         }
 
         private void RegisterReader_Load(object sender, EventArgs e)
@@ -37,51 +37,36 @@ namespace Forms
             string fnama = textBox4.Text;
             string lname = textBox5.Text;
             string email = textBox6.Text;
-            string phone = textBox7.Text;
-
+            string phone = textBox7.Text;       
             if (string.IsNullOrWhiteSpace(username))
             {
-                MessageBox.Show("Невалидно потребителско име");
-                textBox1.Clear();
-                textBox2.Clear();
-                textBox3.Clear();
+                MessageBox.Show("Невалидно потребителско име");                
                 return;
             }
-            if (string.IsNullOrWhiteSpace(password))
+            if (string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(password2))
             {
-                MessageBox.Show("Невалидна парола");
-                textBox1.Clear();
-                textBox2.Clear();
-                textBox3.Clear();
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(password2))
-            {
-                MessageBox.Show("Невалидна парола");
-                textBox1.Clear();
-                textBox2.Clear();
-                textBox3.Clear();
+                MessageBox.Show("Невалидна парола");              
                 return;
             }
             if (password2 != password)
             {
-                MessageBox.Show("Грешна парола");
-                textBox1.Clear();
-                textBox2.Clear();
-                textBox3.Clear();
+                MessageBox.Show("Паролите не съвпадат");              
                 return;
-            }
-            Controller.RegisterLoginController controller = new Controller.RegisterLoginController();
-            RoleType role = RoleType.Reader;
-          
-            if(await controller.RegisterAsync(username, password, fnama, lname, email, phone, role)==true)
+            }        
+            Controller.RegisterLoginController controller = new Controller.RegisterLoginController();       
+            bool isTaken = await controller.IsUsernameTaken(username);
+            if (isTaken)
             {
-                DialogResult = DialogResult.OK;
-                MessageBox.Show("Успешна регистрация");    
+                MessageBox.Show("Потребителското име вече е заето.");
+                textBox1.Clear();              
+                return; 
             }
-            else
+            RoleType role = RoleType.Reader;         
+            if (await controller.RegisterAsync(username, password, fnama, lname, email, phone, role) == true)
             {
-                DialogResult = DialogResult.Cancel;
+                MessageBox.Show("Успешна регистрация");
+                DialogResult = DialogResult.OK;          
+                this.Close(); 
             }
             textBox1.Clear();
             textBox2.Clear();
@@ -95,6 +80,11 @@ namespace Forms
         private void button2_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
