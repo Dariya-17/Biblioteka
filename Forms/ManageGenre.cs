@@ -27,7 +27,14 @@ namespace Forms
                 MessageBox.Show("Невалидно име на жанр");
                 return;
             }
-            await genre.AddAsync(j);
+            bool genreExists = await genre.IsGenreExisting(j);
+            if (genreExists)
+            {
+                MessageBox.Show("Този жанр вече съществува ");
+                textBox1.Clear(); 
+                return; 
+            }    
+            await genre.Add(j);
             MessageBox.Show("Успешно добавяне на жанр");
             textBox1.Clear();
         }
@@ -36,7 +43,7 @@ namespace Forms
         {
             try
             {
-                var list = await genre.GetAllAsync();
+                var list = await genre.GetAll();
                 dataGridView1.DataSource = list.Select(g => new { g.Id, g.Name }).ToList();
             }
             catch (Exception ex)

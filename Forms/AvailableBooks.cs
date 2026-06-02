@@ -24,7 +24,7 @@ namespace Forms
         {
             try
             {
-                var allBooks = await _booksController.GetAllAsync();
+                var allBooks = await _booksController.GetAll();
 
                 var freeBooks = allBooks
                     .Where(b => b.AvailableCopies > 0)

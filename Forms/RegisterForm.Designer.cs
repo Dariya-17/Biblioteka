@@ -134,6 +134,7 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(330, 409);
             panel1.TabIndex = 9;
+            panel1.Paint += panel1_Paint;
             // 
             // RegisterForm
             // 

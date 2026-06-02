@@ -73,6 +73,16 @@ namespace Forms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _360_F_367357209_BG07SVnnB4HSHSaMiHajfZhrZZAE859A {
+            get {
+                object obj = ResourceManager.GetObject("360_F_367357209_BG07SVnnB4HSHSaMiHajfZhrZZAE859A", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _4b0dac97_b4fa_4c56_98ba_257dc290a0dc_1080x1080 {
             get {
                 object obj = ResourceManager.GetObject("4b0dac97-b4fa-4c56-98ba-257dc290a0dc_1080x1080", resourceCulture);

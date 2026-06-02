@@ -25,7 +25,7 @@ namespace Forms
         private async void button1_Click(object sender, EventArgs e)
         {
             List<Author> list = await authorController.GetAllAuthors();
-            List<Genre> list1 = await genreController.GetAllAsync();
+            List<Genre> list1 = await genreController.GetAll();
             ManageBooks f = new ManageBooks(list,list1);
             f.ShowDialog();
         }

@@ -33,7 +33,7 @@ namespace Forms
 
 
         }
-       
+
         private void ManageBooks_Load(object sender, EventArgs e)
         {
 
@@ -44,13 +44,14 @@ namespace Forms
             try
             {
 
-                var booksList = await book.GetAllAsync();
+                var booksList = await book.GetAll();
                 dataGridView1.DataSource = booksList.Select(b => new
                 {
                     b.Id,
                     b.Title,
                     b.AvailableCopies,
                     b.Author.FirstName,
+                    b.Author.LastName,
                     b.Genre.Name
                 }).ToList();
             }
@@ -83,10 +84,17 @@ namespace Forms
                 MessageBox.Show(" въведете валиден брой копия ");
                 return;
             }
+            string title = textBox2.Text;         
+            bool isTitleTaken = await book.IsBookTitleTaken(title);
+            if (isTitleTaken)
+            {
+                MessageBox.Show("Книга с такова заглавие вече съществува в библиотеката");
+                textBox2.Clear();
+                return; 
+            }
             string[] arr = comboBox1.SelectedItem.ToString().Split(' ');
-            int authorId = (await author.GetByNameAsync(arr[0], arr[1])).Id;
-           Genre genre=await this.genre.GetByNameID(comboBox2.SelectedItem.ToString());
-            string title = textBox2.Text;
+            int authorId = (await author.GetByName(arr[0], arr[1])).Id;
+            Genre genre = await this.genre.GetByNameID(comboBox2.SelectedItem.ToString());
             await book.AddAsync(title, authorId, genre.Id, int.Parse(textBox1.Text));
             MessageBox.Show("Книгата беше добавена успешно!");
 
@@ -104,10 +112,10 @@ namespace Forms
         {
             string searchTitle = textBox2.Text;
             BooksController bookController = new BooksController();
-            List<Books> foundBooks = await bookController.GetByTitleAsync(searchTitle);
-            if(foundBooks.Count == 0)
+            List<Books> foundBooks = await bookController.GetByTitle(searchTitle);
+            if (foundBooks.Count == 0)
             {
-                MessageBox.Show("Няма намерени книги с това заглавие.");
+                MessageBox.Show("Няма намерени книги с това заглавие");
                 return;
             }
             dataGridView1.DataSource = foundBooks.Select(b => new
@@ -115,6 +123,7 @@ namespace Forms
                 b.Id,
                 b.Title,
                 b.Author.FirstName,
+                b.Author.LastName,
                 b.Genre.Name,
                 b.AvailableCopies
             }).ToList();
@@ -122,25 +131,30 @@ namespace Forms
 
         private async void button5_Click(object sender, EventArgs e)
         {
-          
-            if (string.IsNullOrEmpty(textBox3.Text)) 
+
+            if (string.IsNullOrEmpty(textBox3.Text))
             {
-                MessageBox.Show(" въведете ID на книгата, която искате да изтриете");
+                MessageBox.Show(" въведете ID на книгата която искате да изтриете");
                 return;
-            }        
-            int bookId = int.Parse(textBox3.Text);   
+            }
+            int bookId = int.Parse(textBox3.Text);
             BooksController bookController = new BooksController();
-            bool isDeleted = await bookController.DeleteByIdAsync(bookId);
+            bool isDeleted = await bookController.DeleteById(bookId);
             if (isDeleted)
             {
-                MessageBox.Show("Книгата беше изтрита успешно от системата!");
-               textBox3.Clear();             
+                MessageBox.Show("Книгата беше изтрита успешно ");
+                textBox3.Clear();
             }
             else
             {
                 MessageBox.Show(" Не е намерена книга с такова ID ");
             }
         }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
-    }
+}
 

@@ -25,14 +25,14 @@ namespace Controller
             this.context = c;
         }
 
-        public async Task<User> LoginAsync(string username, string password)
+        public async Task<User> Login(string username, string password)
         {
             return await context.Users.Include(u => u.Borrowings) 
                 .ThenInclude(b => b.Book)   
                 .Include(u => u.Books)        
                 .FirstOrDefaultAsync(u => u.UserName == username && u.Password == password);
         }
-        public async Task<string> RegisterAdminAsync(string username, string password, RoleType role)
+        public async Task<string> RegisterAdmin(string username, string password, RoleType role)
         {     
                 if (await context.Users.AnyAsync(u => u.UserName == username))
                 {
@@ -52,7 +52,7 @@ namespace Controller
         {
             return await context.Users.AnyAsync(u => u.UserName == username);
         }
-        public async Task<bool> RegisterAsync(string username, string password, string firstName, string lastName, string email, string phone, RoleType role)
+        public async Task<bool> Register(string username, string password, string firstName, string lastName, string email, string phone, RoleType role)
         { 
             if (await context.Users.AnyAsync(u => u.UserName == username))
             {

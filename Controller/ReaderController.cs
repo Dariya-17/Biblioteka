@@ -21,20 +21,20 @@ namespace Controller
         {
             this.context = c;
         }
-        public async Task<List<Reader>> GetAllAsync() 
+        public async Task<List<Reader>> GetAll() 
         {
             return await context.Readers.ToListAsync();
 
         }
-        public async Task AddAsync(string firstName, string lastName, string email, string phone,string username,string password)
+        public async Task Add(string firstName, string lastName, string email, string phone,string username,string password)
         {
             context.Readers.Add(new Reader { FirstName = firstName, LastName = lastName, Email = email, PhoneNumber = phone });
            context.Users.Add(new User { UserName=username,Password=password});
             context.SaveChanges();
         }
-        public async Task<List<Reader>> GetByNameAsync(string Fname,string lname)
+        public async Task<List<Reader>> GetByName(string Fname,string lname)
         {
-            if (string.IsNullOrWhiteSpace(Fname)|| string.IsNullOrWhiteSpace(lname)) return await GetAllAsync();
+            if (string.IsNullOrWhiteSpace(Fname)|| string.IsNullOrWhiteSpace(lname)) return await GetAll();
             return await context.Readers
                 .Where(r => r.FirstName==Fname && r.LastName==lname)
                 .ToListAsync();

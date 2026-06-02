@@ -35,6 +35,7 @@
             textBox2 = new TextBox();
             button1 = new Button();
             button2 = new Button();
+            label3 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -104,6 +105,16 @@
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click_1;
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Bookman Old Style", 19.8000011F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label3.Location = new Point(213, 40);
+            label3.Name = "label3";
+            label3.Size = new Size(428, 39);
+            label3.TabIndex = 6;
+            label3.Text = "Welcome to our library";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(11F, 22F);
@@ -113,6 +124,7 @@
             BackgroundImageLayout = ImageLayout.Center;
             CancelButton = button1;
             ClientSize = new Size(861, 550);
+            Controls.Add(label3);
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(textBox2);
@@ -136,5 +148,6 @@
         private TextBox textBox2;
         private Button button1;
         private Button button2;
+        private Label label3;
     }
 }

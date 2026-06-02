@@ -196,7 +196,7 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(256, 36);
+            textBox3.Location = new Point(541, 12);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(198, 35);
             textBox3.TabIndex = 14;
@@ -206,11 +206,12 @@
             label5.AutoSize = true;
             label5.BackColor = Color.White;
             label5.Font = new Font("Yu Gothic", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label5.Location = new Point(76, 45);
+            label5.Location = new Point(1, 20);
             label5.Name = "label5";
-            label5.Size = new Size(152, 26);
+            label5.Size = new Size(512, 26);
             label5.TabIndex = 15;
-            label5.Text = "ID of the Book";
+            label5.Text = "If you want to delete a book type an ID of the Book";
+            label5.Click += label5_Click;
             // 
             // ManageBooks
             // 

@@ -20,11 +20,11 @@ namespace Controller
         {
             this.context = c;
         }
-        public async Task<List<Books>> GetAllAsync()
+        public async Task<List<Books>> GetAll()
         {
             return await context.Books.Include(b => b.Author).Include(b => b.Genre).ToListAsync();
         }
-        public async Task<List<Books>> GetAvailableAsync()
+        public async Task<List<Books>> GetAvailable()
         {
            return await context.Books.Include(b => b.Author).Where(b => b.AvailableCopies > 0).ToListAsync();
         }
@@ -33,20 +33,25 @@ namespace Controller
             context.Books.Add(new Books { Title = title, AuthorId = authorId, GenreId = genreId, AvailableCopies = copies });
             await context.SaveChangesAsync();
         }
-        public async Task<List<Books>> GetByTitleAsync(string title)
+        public async Task<List<Books>> GetByTitle(string title)
         {
             if (string.IsNullOrWhiteSpace(title)) return new List<Books>();
             return await context.Books
                 .Include(b => b.Author).Include(b => b.Genre)
                 .Where(b => b.Title==title).ToListAsync();
         }
-        public async Task<bool> DeleteByIdAsync(int id)
+        public async Task<bool> DeleteById(int id)
         {   
             var book = await context.Books.FindAsync(id);        
             if (book == null) return false;
             context.Books.Remove(book);
             await context.SaveChangesAsync();
             return true; 
+        }
+        public async Task<bool> IsBookTitleTaken(string title)
+        {
+           
+            return await context.Books.AnyAsync(b => b.Title == title);
         }
     }
 }

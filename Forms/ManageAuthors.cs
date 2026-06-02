@@ -27,46 +27,41 @@ namespace Forms
 
         private async void button2_Click(object sender, EventArgs e)
         {
-
-            await LoadAuthorsIntoGrid();
-
+            var authorsList = await _authorController.GetAllAuthors();
+            dataGridView1.DataSource = authorsList.Select(a => new
+            {
+                a.Id,
+                a.FirstName,
+                a.LastName
+            }).ToList();
 
         }
 
-        private async Task LoadAuthorsIntoGrid()
-        {
-            try
-            {
-                var authorsList = await _authorController.GetAllAuthors();
-                dataGridView1.DataSource = authorsList.Select(a => new
-                {
-                    Номер = a.Id,
-                    Име = a.FirstName,
-                    Фамилия = a.LastName
-                }).ToList();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Грешка при извеждане на авторите: {ex.Message}");
-            }
-        }
+       
 
         private async void button1_Click(object sender, EventArgs e)
         {
-
             if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox2.Text))
             {
                 MessageBox.Show("Моля, попълнете както името, така и фамилията на автора");
                 return;
             }
-            string resultMessage = await _authorController.AddAuthor(textBox1.Text, textBox2.Text);
 
+            string firstName = textBox1.Text;
+            string lastName = textBox2.Text;
+            bool authorExists = await _authorController.IsAuthorExisting(firstName, lastName);
+            if (authorExists)
+            {
+                MessageBox.Show("Този автор вече съществува ");
+                textBox1.Clear();
+                textBox2.Clear();
+                return; 
+            }
+            string resultMessage = await _authorController.AddAuthor(firstName, lastName);
             MessageBox.Show(resultMessage);
-
             textBox1.Clear();
             textBox2.Clear();
 
-            await LoadAuthorsIntoGrid();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -79,7 +74,7 @@ namespace Forms
             string searchFirstName = textBox1.Text; 
             string searchLastName = textBox2.Text;            
             AuthorController authorController = new AuthorController();          
-            Author foundAuthor = await authorController.GetByNameAsync(searchFirstName, searchLastName); 
+            Author foundAuthor = await authorController.GetByName(searchFirstName, searchLastName); 
             if (foundAuthor != null)
             {
      
@@ -94,7 +89,7 @@ namespace Forms
             else
             { 
                 dataGridView1.DataSource = null;
-                MessageBox.Show("Няма намерен автор с тези имена!");
+                MessageBox.Show("Няма намерен автор с тези имена");
             }
         }
     }

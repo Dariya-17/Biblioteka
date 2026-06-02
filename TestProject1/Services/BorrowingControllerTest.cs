@@ -36,7 +36,7 @@ namespace TestProject1.Services
             });
             await context.SaveChangesAsync();       
             BorrowingController controller = new BorrowingController(context);       
-            List<Borrowing> result = await controller.GetActiveBorrowingsAsync();        
+            List<Borrowing> result = await controller.GetActiveBorrowings();        
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result.Count );
             Assert.IsNull(result[0].ReturnedDate);
@@ -57,7 +57,7 @@ namespace TestProject1.Services
             context.Books.Add(book);
             await context.SaveChangesAsync();
             BorrowingController controller = new BorrowingController(context);
-            bool isSuccess = await controller.BorrowBookAsync(reader.Id, book.Id);         
+            bool isSuccess = await controller.BorrowBook(reader.Id, book.Id);         
             Assert.IsTrue(isSuccess);         
             var updatedBook = await context.Books.FindAsync(book.Id);
             Assert.AreEqual(2, updatedBook.AvailableCopies);        
@@ -81,7 +81,7 @@ namespace TestProject1.Services
             context.Books.Add(book);
             await context.SaveChangesAsync();
             BorrowingController controller = new BorrowingController(context);
-            bool isSuccess = await controller.BorrowBookAsync(reader.Id, book.Id);     
+            bool isSuccess = await controller.BorrowBook(reader.Id, book.Id);     
             Assert.IsFalse(isSuccess); 
             int borrowingsCount = await context.Borrowings.CountAsync();
             Assert.AreEqual(0, borrowingsCount); 
@@ -98,7 +98,7 @@ namespace TestProject1.Services
             context.Borrowings.Add(new Borrowing { Reader = reader, Book = book, BorrowedDate = DateTime.Now, ReturnedDate = null });
             await context.SaveChangesAsync();
             BorrowingController controller = new BorrowingController(context);
-            List<Borrowing> result = await controller.GetByReaderNameAsync("", "   ");
+            List<Borrowing> result = await controller.GetByReaderName("", "   ");
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result.Count);
         }
@@ -116,7 +116,7 @@ namespace TestProject1.Services
             context.Borrowings.Add(new Borrowing { Reader = reader2, Book = book, BorrowedDate = DateTime.Now, ReturnedDate = null });
             await context.SaveChangesAsync();
             BorrowingController controller = new BorrowingController(context);        
-            List<Borrowing> result = await controller.GetByReaderNameAsync("Георги", "Димитров");     
+            List<Borrowing> result = await controller.GetByReaderName("Георги", "Димитров");     
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result.Count);
             Assert.AreEqual(reader1.Id, result[0].ReaderId);

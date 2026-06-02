@@ -62,7 +62,7 @@ namespace Forms
                 return; 
             }
             RoleType role = RoleType.Reader;         
-            if (await controller.RegisterAsync(username, password, fnama, lname, email, phone, role) == true)
+            if (await controller.Register(username, password, fnama, lname, email, phone, role) == true)
             {
                 MessageBox.Show("Успешна регистрация");
                 DialogResult = DialogResult.OK;          

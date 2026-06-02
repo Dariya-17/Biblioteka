@@ -26,7 +26,7 @@ namespace TestProject1.Services
             });
             await context.SaveChangesAsync();
             RegisterLoginController controller = new RegisterLoginController(context);
-            User? user = await controller.LoginAsync("admin3", "123");
+            User? user = await controller.Login("admin3", "123");
             Assert.IsNotNull(user);
             Assert.AreEqual("admin3", user.UserName);
         }
@@ -42,7 +42,7 @@ namespace TestProject1.Services
             });
             await context.SaveChangesAsync();
             RegisterLoginController controller = new RegisterLoginController(context);
-          string nz= await controller.RegisterAdminAsync("admin3", "123",RoleType.Admin);
+          string nz= await controller.RegisterAdmin("admin3", "123",RoleType.Admin);
             Assert.IsNotNull(nz);
             Assert.AreEqual("Успешна регистрация", nz );
         }
@@ -57,7 +57,7 @@ namespace TestProject1.Services
             string phone = "0888888888";
             RoleType role = RoleType.Reader;
             RegisterLoginController controller = new RegisterLoginController(context);
-            bool result = await controller.RegisterAsync(username, password, firstName, lastName, email, phone, role);
+            bool result = await controller.Register(username, password, firstName, lastName, email, phone, role);
             Assert.IsTrue(result);                           
             var userInDb = await context.Users.FirstOrDefaultAsync(u => u.UserName == username);
             Assert.IsNotNull(userInDb);
@@ -82,7 +82,7 @@ namespace TestProject1.Services
             string email = "pesho@abv.bg";
             string phone = "0899999999";
             RoleType role = RoleType.Reader;
-            bool result = await controller.RegisterAsync(username, password, firstName, lastName, email, phone, role);
+            bool result = await controller.Register(username, password, firstName, lastName, email, phone, role);
             Assert.IsFalse(result); 
         }
     }

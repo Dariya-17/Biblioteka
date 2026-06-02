@@ -18,9 +18,9 @@ namespace Forms
         public RegisterForm()
         {
             InitializeComponent();
-        
-            
-            
+
+
+
         }
 
         private async void button1_Click(object sender, EventArgs e)
@@ -29,56 +29,47 @@ namespace Forms
             string password = textBox2.Text;
             string password2 = textBox3.Text;
 
+           
             if (string.IsNullOrWhiteSpace(username))
             {
                 MessageBox.Show("Невалидно потребителско име");
-                textBox1.Clear();
-                textBox2.Clear();
-                textBox3.Clear();
                 return;
             }
-            if (string.IsNullOrWhiteSpace(password))
+            if (string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(password2))
             {
                 MessageBox.Show("Невалидна парола");
-                textBox1.Clear();
-                textBox2.Clear();
-                textBox3.Clear();
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(password2))
-            {
-                MessageBox.Show("Невалидна парола");
-                textBox1.Clear();
-                textBox2.Clear();
-                textBox3.Clear();
                 return;
             }
             if (password2 != password)
             {
-                MessageBox.Show("Грешна парола");
-                textBox1.Clear();
-                textBox2.Clear();
-                textBox3.Clear();
+                MessageBox.Show("Паролите не съвпадат!");
                 return;
             }
+
             Controller.RegisterLoginController controller = new Controller.RegisterLoginController();
-            RoleType role = new RoleType();
+
            
-             role = RoleType.Admin;
-            
+            bool isTaken = await controller.IsUsernameTaken(username);
+            if (isTaken)
+            {
+                MessageBox.Show("Потребителското име вече е заето");
+                textBox1.Clear();           
+                return; 
+            }
+
+            RoleType role = RoleType.Admin;
+            role = RoleType.Admin;
             User user = new User
             {
-                UserName = username,
+               UserName = username,
                 Password = password,
-                Role = role
+               Role = role
             };
-            await controller.RegisterAdminAsync(username, password,role);
+            await controller.RegisterAdmin(username, password, role);
             DialogResult = DialogResult.OK;
             textBox1.Clear();
-                textBox2.Clear();
-                textBox3.Clear();
-               
-            
+            textBox2.Clear();
+            textBox3.Clear();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -87,6 +78,11 @@ namespace Forms
         }
 
         private void RegisterForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

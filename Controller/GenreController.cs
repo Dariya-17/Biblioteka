@@ -20,23 +20,27 @@ namespace Controller
         {
             this.context = c;
         }
-        public async Task<List<Genre>> GetAllAsync()
+        public async Task<List<Genre>> GetAll()
         {
             return await context.Genres.ToListAsync();
         }
-        public async Task AddAsync(string name)
+        public async Task Add(string name)
         {
             context.Genres.Add(new Genre { Name = name });
             await context.SaveChangesAsync();
         }
-        public async Task<List<Genre>> GetByNameAsync(string name)
+        public async Task<List<Genre>> GetByName(string name)
         {
-            if (string.IsNullOrWhiteSpace(name)) return await GetAllAsync();
+            if (string.IsNullOrWhiteSpace(name)) return await GetAll();
             return await context.Genres.Where(g => g.Name==name).ToListAsync();
         }
         public async Task<Genre> GetByNameID(string name)
         {
             return await context.Genres.FirstOrDefaultAsync(g => g.Name == name);
+        }
+        public async Task<bool> IsGenreExisting(string name)
+        {      
+            return await context.Genres.AnyAsync(g => g.Name == name);
         }
     }
 }

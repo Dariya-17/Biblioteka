@@ -23,7 +23,7 @@ namespace TestProject1.Services
             context.Books.Add(new Books { Title = "До Чикаго и назад", AuthorId = author.Id, AvailableCopies = 0 });
             await context.SaveChangesAsync();
             BooksController controller = new BooksController(context);
-            List<Books> result = await controller.GetAvailableAsync();
+            List<Books> result = await controller.GetAvailable();
             Assert.IsNotNull(result);
             Assert.AreEqual(1, result.Count); 
             Assert.AreEqual("Бай Ганьо", result[0].Title);
@@ -42,7 +42,7 @@ namespace TestProject1.Services
             context.Books.Add(new Books { Title = "Нова", AuthorId = author.Id, GenreId = genre.Id, AvailableCopies = 2 });
             await context.SaveChangesAsync();
             BooksController controller = new BooksController(context);
-            List<Books> result = await controller.GetAllAsync();
+            List<Books> result = await controller.GetAll();
             Assert.IsNotNull(result);
             Assert.AreEqual(2, result.Count);
             Assert.IsNotNull(result[0].Author); 
@@ -68,7 +68,7 @@ namespace TestProject1.Services
             context.Books.Add(book);
             await context.SaveChangesAsync();
            BooksController controller = new BooksController(context);
-            bool isDeleted = await controller.DeleteByIdAsync(book.Id);        
+            bool isDeleted = await controller.DeleteById(book.Id);        
             Assert.IsTrue(isDeleted);         
             var bookInDb = await context.Books.FindAsync(book.Id);
             Assert.IsNull(bookInDb);
@@ -78,7 +78,7 @@ namespace TestProject1.Services
         {
             var context = TestDb.CreateContext();
             BooksController controller = new BooksController(context);          
-            bool isDeleted = await controller.DeleteByIdAsync(999);        
+            bool isDeleted = await controller.DeleteById(999);        
             Assert.IsFalse(isDeleted);
         }
     }

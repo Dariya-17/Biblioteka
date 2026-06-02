@@ -37,10 +37,14 @@ namespace Controller
             await DbContext.SaveChangesAsync();
             return $"Автор с Id {a.Id} е създаден успешно";
         }
-        public async Task<Author> GetByNameAsync(string name,string ls)
+        public async Task<Author> GetByName(string name,string ls)
         {
             return await DbContext.Authors
                 .FirstOrDefaultAsync(a => a.FirstName == name && a.LastName == ls);
+        }
+        public async Task<bool> IsAuthorExisting(string firstName, string lastName)
+        { 
+            return await DbContext.Authors.AnyAsync(a => a.FirstName == firstName && a.LastName == lastName);
         }
     }
 }

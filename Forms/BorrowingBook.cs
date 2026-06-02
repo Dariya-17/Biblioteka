@@ -52,10 +52,10 @@ namespace Forms
             int bookId = int.Parse(textBox4.Text);
             int readerId = Form1.LoggedInReader.Id;
             BorrowingController borrowingController = new BorrowingController();
-            bool isSuccess = await borrowingController.BorrowBookAsync(readerId, bookId);
+            bool isSuccess = await borrowingController.BorrowBook(readerId, bookId);
             if (isSuccess)
             {
-                MessageBox.Show("Книгата беше заета успешно!");
+                MessageBox.Show("Книгата беше заета успешно");
 
             }
             else

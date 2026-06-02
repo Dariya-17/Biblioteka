@@ -20,11 +20,11 @@ namespace Controller
         {
             this.context = c;
         }
-        public async Task<List<Borrowing>> GetActiveBorrowingsAsync()
+        public async Task<List<Borrowing>> GetActiveBorrowings()
         {
            return await context.Borrowings.Include(b => b.Reader).Include(b => b.Book).Where(b => b.ReturnedDate == null).ToListAsync();
         }
-        public async Task<bool> BorrowBookAsync(int readerId, int bookId)
+        public async Task<bool> BorrowBook(int readerId, int bookId)
         {
             var book = await context.Books.FindAsync(bookId);
             if (book == null || book.AvailableCopies <= 0)
@@ -39,7 +39,7 @@ namespace Controller
            await context.SaveChangesAsync();
             return true;
         }
-        public async Task ReturnBookAsync(int borrowingId)
+        public async Task ReturnBook(int borrowingId)
         {
             var borrowing = await context.Borrowings.Include(b => b.Book).FirstOrDefaultAsync(b => b.Id == borrowingId);
             if (borrowing != null)
@@ -49,9 +49,9 @@ namespace Controller
                 await context.SaveChangesAsync();
             }
         }
-        public async Task<List<Borrowing>> GetByReaderNameAsync(string fName,string lname)
+        public async Task<List<Borrowing>> GetByReaderName(string fName,string lname)
         {
-            if (string.IsNullOrWhiteSpace(fName)|| string.IsNullOrWhiteSpace(lname)) return await GetActiveBorrowingsAsync();
+            if (string.IsNullOrWhiteSpace(fName)|| string.IsNullOrWhiteSpace(lname)) return await GetActiveBorrowings();
             return await context.Borrowings
                 .Include(b => b.Reader).Include(b => b.Book)
                 .Where(b => b.ReturnedDate == null && (b.Reader.FirstName==fName || b.Reader.LastName==lname))

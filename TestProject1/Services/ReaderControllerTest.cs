@@ -21,7 +21,7 @@ namespace TestProject1.Services
             context.Readers.Add(new Reader { FirstName = "Мария", LastName = "Георгиева", Email = "mary@abv.bg", PhoneNumber = "0888333444" });
             await context.SaveChangesAsync();
             ReaderController controller = new ReaderController(context);      
-            List<Reader> result = await controller.GetAllAsync();     
+            List<Reader> result = await controller.GetAll();     
             Assert.IsNotNull(result);
             Assert.AreEqual(2, result.Count);
             Assert.AreEqual("Петър", result[0].FirstName);
@@ -39,7 +39,7 @@ namespace TestProject1.Services
             string phone = "0899123456";
             string username = "admin99";
             string password = "password";        
-            await controller.AddAsync(fName, lName, email, phone, username, password);        
+            await controller.Add(fName, lName, email, phone, username, password);        
             var reader = await context.Readers.FirstOrDefaultAsync(r => r.Email == email);
             Assert.IsNotNull(reader);
             Assert.AreEqual(fName, reader.FirstName);
@@ -57,7 +57,7 @@ public async Task Test_GetByName()
     await context.SaveChangesAsync();
     
     ReaderController controller = new ReaderController(context);        
-    List<Reader> result = await controller.GetByNameAsync("Георги", "Димитров");         
+    List<Reader> result = await controller.GetByName("Георги", "Димитров");         
     Assert.IsNotNull(result);
     Assert.AreEqual(1, result.Count);
     Assert.AreEqual("Георги", result[0].FirstName);

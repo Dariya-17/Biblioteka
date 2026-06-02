@@ -145,13 +145,16 @@
   <data name="360_F_294526635_8Fc9IbBHWOC83JsiFNRNx5VivafEjiyi" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\360_F_294526635_8Fc9IbBHWOC83JsiFNRNx5VivafEjiyi.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="book-pile-of-must-read-books-scaled1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\book-pile-of-must-read-books-scaled1.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="book-genres-on-shelf-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\book-genres-on-shelf-1.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="maxresdefault" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\maxresdefault.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="book-pile-of-must-read-books-scaled1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\book-pile-of-must-read-books-scaled1.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="360_F_367357209_BG07SVnnB4HSHSaMiHajfZhrZZAE859A" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\360_F_367357209_BG07SVnnB4HSHSaMiHajfZhrZZAE859A.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
