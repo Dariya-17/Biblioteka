@@ -34,7 +34,7 @@ namespace Controller
             bool genreExists = await IsGenreExisting(name);
             if (genreExists)
             {
-                return $" Жанрът '{name}' вече съществува ";
+                return $" Жанрът {name} вече съществува ";
             }       
             context.Genres.Add(new Genre { Name = name });
             await context.SaveChangesAsync();
@@ -43,7 +43,8 @@ namespace Controller
         }
         public async Task<List<Genre>> GetByName(string name)
         {
-            if (string.IsNullOrWhiteSpace(name)) return await GetAll();
+            if (string.IsNullOrWhiteSpace(name))
+                return  new List<Genre>();
             return await context.Genres.Where(g => g.Name==name).ToListAsync();
         }
         public async Task<Genre> GetByNameID(string name)

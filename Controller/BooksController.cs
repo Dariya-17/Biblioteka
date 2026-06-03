@@ -43,7 +43,7 @@ namespace Controller
             return await context.Books
                 .Include(b => b.Author)
                 .Include(b => b.Genre)
-                .Where(b => b.Title.Trim() == title.Trim())
+                .Where(b => b.Title== title)
                 .ToListAsync();
         }
         public async Task<bool> DeleteById(int id)

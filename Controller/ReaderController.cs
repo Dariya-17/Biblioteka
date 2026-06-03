@@ -39,12 +39,12 @@ namespace Controller
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
                 return " Потребителското име и паролата са задължителни!";
-            }      
-            firstName = firstName.Trim();
-            lastName = lastName.Trim();
-            email = email.Trim();
-            phone = phone.Trim();
-            username = username.Trim();        
+            }
+            firstName = firstName;
+            lastName = lastName;
+            email = email;
+            phone = phone;
+            username = username;        
             bool isUsernameTaken = await context.Users.AnyAsync(u => u.UserName == username);
             if (isUsernameTaken)
             {

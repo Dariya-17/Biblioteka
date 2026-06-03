@@ -28,17 +28,30 @@ namespace TestProject1.Services
             Assert.AreEqual("Ужаси", result[1].Name);
         }
         [Test]
-        public async Task Test_Add()
+        public async Task Test_Add_()
         {
+            
             var context = TestDb.CreateContext();
-            GenreController controller = new GenreController(context);
-            string genreName = " фантастика";
-            await controller.Add(genreName);     
+            var controller = new GenreController(context);
+            string genreName = "Фентъзи";          
+            string result = await controller.Add(genreName);        
+            Assert.AreEqual("Жанрът беше добавен успешно", result);
             var genreInDb = await context.Genres.FirstOrDefaultAsync(g => g.Name == genreName);
             Assert.IsNotNull(genreInDb);
-            Assert.AreEqual(genreName, genreInDb.Name);
-            Assert.IsTrue(genreInDb.Id > 0);
         }
+       
+        [Test]
+        public async Task Test_Add_Empty()
+        {        
+            var context = TestDb.CreateContext();
+            var controller = new GenreController(context);
+            string result = await controller.Add("   ");           
+            Assert.AreEqual("Името на жанра е задължително", result);        
+            int count = await context.Genres.CountAsync();
+            Assert.AreEqual(0, count);
+        }
+      
+
         [Test]
         public async Task Test_GetByName()
         {     

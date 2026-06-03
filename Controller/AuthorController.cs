@@ -34,12 +34,12 @@ namespace Controller
             {
                 return " Първото име и фамилията на автора са задължителни";
             }
-            f = f.Trim();
-            l = l.Trim();   
+            f = f;
+            l = l;   
             bool authorExists = await IsAuthorExisting(f, l);
             if (authorExists)
             {
-                return $"Грешка: Авторът '{f} {l}' вече съществува ";
+                return $" Авторът '{f} {l}' вече съществува ";
             }    
             Author a = new Author();
             a.FirstName = f;
