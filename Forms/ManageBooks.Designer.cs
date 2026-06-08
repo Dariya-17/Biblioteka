@@ -50,7 +50,7 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(248, 135);
+            textBox1.Location = new Point(189, 109);
             textBox1.Margin = new Padding(4, 3, 4, 3);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(206, 35);
@@ -58,7 +58,7 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(248, 87);
+            textBox2.Location = new Point(189, 42);
             textBox2.Margin = new Padding(4, 3, 4, 3);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(206, 35);
@@ -69,7 +69,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.White;
             label1.Font = new Font("Yu Gothic", 13.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.Location = new Point(139, 92);
+            label1.Location = new Point(67, 47);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(65, 30);
@@ -81,7 +81,7 @@
             label2.AutoSize = true;
             label2.BackColor = Color.White;
             label2.Font = new Font("Yu Gothic", 13.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label2.Location = new Point(139, 135);
+            label2.Location = new Point(57, 106);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(91, 30);
@@ -91,7 +91,7 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(248, 190);
+            comboBox1.Location = new Point(189, 169);
             comboBox1.Margin = new Padding(4, 3, 4, 3);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(206, 30);
@@ -100,7 +100,7 @@
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(248, 237);
+            comboBox2.Location = new Point(189, 234);
             comboBox2.Margin = new Padding(4, 3, 4, 3);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(206, 30);
@@ -111,7 +111,7 @@
             label3.AutoSize = true;
             label3.BackColor = Color.White;
             label3.Font = new Font("Yu Gothic", 13.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label3.Location = new Point(139, 187);
+            label3.Location = new Point(57, 169);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new Size(89, 30);
@@ -123,7 +123,7 @@
             label4.AutoSize = true;
             label4.BackColor = Color.White;
             label4.Font = new Font("Yu Gothic", 13.8F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label4.Location = new Point(139, 234);
+            label4.Location = new Point(67, 234);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
             label4.Size = new Size(82, 30);
@@ -132,7 +132,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(582, 203);
+            button1.Location = new Point(704, 371);
             button1.Margin = new Padding(4, 3, 4, 3);
             button1.Name = "button1";
             button1.Size = new Size(129, 32);
@@ -143,7 +143,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(582, 155);
+            button2.Location = new Point(866, 371);
             button2.Margin = new Padding(4, 3, 4, 3);
             button2.Name = "button2";
             button2.Size = new Size(129, 32);
@@ -165,7 +165,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(582, 104);
+            button3.Location = new Point(940, 492);
             button3.Margin = new Padding(4, 3, 4, 3);
             button3.Name = "button3";
             button3.Size = new Size(129, 32);
@@ -176,7 +176,7 @@
             // 
             // button4
             // 
-            button4.Location = new Point(582, 260);
+            button4.Location = new Point(783, 257);
             button4.Name = "button4";
             button4.Size = new Size(129, 92);
             button4.TabIndex = 12;
@@ -186,9 +186,9 @@
             // 
             // button5
             // 
-            button5.Location = new Point(582, 373);
+            button5.Location = new Point(851, 99);
             button5.Name = "button5";
-            button5.Size = new Size(129, 58);
+            button5.Size = new Size(119, 48);
             button5.TabIndex = 13;
             button5.Text = "Delete by Id ";
             button5.UseVisualStyleBackColor = true;
@@ -196,7 +196,7 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(541, 12);
+            textBox3.Location = new Point(797, 58);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(198, 35);
             textBox3.TabIndex = 14;
@@ -206,7 +206,7 @@
             label5.AutoSize = true;
             label5.BackColor = Color.White;
             label5.Font = new Font("Yu Gothic", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label5.Location = new Point(1, 20);
+            label5.Location = new Point(468, 29);
             label5.Name = "label5";
             label5.Size = new Size(512, 26);
             label5.TabIndex = 15;

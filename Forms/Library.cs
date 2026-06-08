@@ -6,12 +6,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Forms
 {
-    public partial class Form1 : Form
+    public partial class Library : Form
     {
         public static Reader LoggedInReader { get; set; }
 
         private readonly LibraryDbContext _context = new LibraryDbContext();
-        public Form1()
+        public Library()
         {
             InitializeComponent();
         }
@@ -38,7 +38,7 @@ namespace Forms
             {
                 if (loggedInUser.Role == RoleType.Reader)
                 {
-                    Form1.LoggedInReader = await _context.Readers
+                    Library.LoggedInReader = await _context.Readers
                          .FirstOrDefaultAsync(r => r.UserId == loggedInUser.Id);
                     ReaderFF readerForm = new ReaderFF();
                     readerForm.ShowDialog();

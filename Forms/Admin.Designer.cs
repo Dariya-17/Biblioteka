@@ -34,6 +34,8 @@
             button5 = new Button();
             pictureBox1 = new PictureBox();
             label1 = new Label();
+            button4 = new Button();
+            button6 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -106,12 +108,36 @@
             label1.TabIndex = 6;
             label1.Text = "Welcome,Admin!";
             // 
+            // button4
+            // 
+            button4.BackColor = Color.Khaki;
+            button4.Location = new Point(324, 390);
+            button4.Name = "button4";
+            button4.Size = new Size(151, 69);
+            button4.TabIndex = 7;
+            button4.Text = "See all clients";
+            button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click_1;
+            // 
+            // button6
+            // 
+            button6.BackColor = Color.Tan;
+            button6.Location = new Point(509, 390);
+            button6.Name = "button6";
+            button6.Size = new Size(151, 69);
+            button6.TabIndex = 8;
+            button6.Text = "All returned Books";
+            button6.UseVisualStyleBackColor = false;
+            button6.Click += button6_Click;
+            // 
             // Admin
             // 
             AutoScaleDimensions = new SizeF(11F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(931, 554);
+            Controls.Add(button6);
+            Controls.Add(button4);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
             Controls.Add(button5);
@@ -136,5 +162,7 @@
         private Button button5;
         private PictureBox pictureBox1;
         private Label label1;
+        private Button button4;
+        private Button button6;
     }
 }

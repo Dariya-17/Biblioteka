@@ -26,7 +26,7 @@ namespace Forms
         {
             List<Author> list = await authorController.GetAllAuthors();
             List<Genre> list1 = await genreController.GetAll();
-            ManageBooks f = new ManageBooks(list,list1);
+            ManageBooks f = new ManageBooks(list, list1);
             f.ShowDialog();
         }
 
@@ -56,6 +56,18 @@ namespace Forms
         private void button5_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            AllClients allClients = new AllClients();
+            allClients.ShowDialog();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            AllClientsReturnedBooks a=new AllClientsReturnedBooks();
+            a.ShowDialog();
         }
     }
 }

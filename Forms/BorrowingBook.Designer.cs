@@ -40,12 +40,14 @@
             label3 = new Label();
             label4 = new Label();
             button3 = new Button();
+            dateTimePicker1 = new DateTimePicker();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(344, 222);
+            button1.Location = new Point(186, 240);
             button1.Margin = new Padding(4);
             button1.Name = "button1";
             button1.Size = new Size(192, 65);
@@ -76,7 +78,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(582, 222);
+            button2.Location = new Point(421, 240);
             button2.Margin = new Padding(4);
             button2.Name = "button2";
             button2.Size = new Size(192, 65);
@@ -159,12 +161,30 @@
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(761, 187);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(370, 40);
+            dateTimePicker1.TabIndex = 12;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(621, 201);
+            label5.Name = "label5";
+            label5.Size = new Size(122, 26);
+            label5.TabIndex = 13;
+            label5.Text = "Pick a date";
+            // 
             // BorrowingBook
             // 
             AutoScaleDimensions = new SizeF(12F, 26F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Linen;
             ClientSize = new Size(1162, 616);
+            Controls.Add(label5);
+            Controls.Add(dateTimePicker1);
             Controls.Add(button3);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -201,5 +221,7 @@
         private Label label3;
         private Label label4;
         private Button button3;
+        private DateTimePicker dateTimePicker1;
+        private Label label5;
     }
 }

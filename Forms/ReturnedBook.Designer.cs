@@ -34,6 +34,8 @@
             button1 = new Button();
             label1 = new Label();
             button3 = new Button();
+            dateTimePicker1 = new DateTimePicker();
+            label2 = new Label();
             SuspendLayout();
             // 
             // textBox1
@@ -81,6 +83,22 @@
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(348, 173);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(365, 36);
+            dateTimePicker1.TabIndex = 6;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(152, 182);
+            label2.Name = "label2";
+            label2.Size = new Size(106, 23);
+            label2.TabIndex = 7;
+            label2.Text = "Pick a date";
+            // 
             // ReturnedBook
             // 
             AutoScaleDimensions = new SizeF(11F, 23F);
@@ -88,6 +106,8 @@
             BackColor = Color.Linen;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(905, 518);
+            Controls.Add(label2);
+            Controls.Add(dateTimePicker1);
             Controls.Add(button3);
             Controls.Add(label1);
             Controls.Add(button1);
@@ -97,6 +117,7 @@
             Margin = new Padding(4, 3, 4, 3);
             Name = "ReturnedBook";
             Text = "ReturnedBook";
+            Load += ReturnedBook_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -108,5 +129,7 @@
         private Button button1;
         private Label label1;
         private Button button3;
+        private DateTimePicker dateTimePicker1;
+        private Label label2;
     }
 }

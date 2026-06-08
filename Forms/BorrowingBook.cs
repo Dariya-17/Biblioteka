@@ -29,7 +29,7 @@ namespace Forms
 
           var userBorrowings = await context.Borrowings
         .Include(b => b.Reader)
-        .Where(b => b.ReaderId == Form1.LoggedInReader.Id)
+        .Where(b => b.ReaderId == Library.LoggedInReader.Id)
         .Select(b => new
         {
             b.Id,
@@ -46,11 +46,10 @@ namespace Forms
         {
             try
             {
-                int readerId = Form1.LoggedInReader.Id;
-
-               
-                bool isSuccess = await _borrowingController.BorrowBook(readerId, textBox4.Text);
-
+                int readerId = Library.LoggedInReader.Id;            
+                string bookInput = textBox4.Text;       
+                DateTime selectedDate = dateTimePicker1.Value;          
+                bool isSuccess = await _borrowingController.BorrowBook(readerId, bookInput, selectedDate);
                 if (isSuccess)
                 {
                     MessageBox.Show("Книгата беше заета успешно");
@@ -59,18 +58,17 @@ namespace Forms
             }
             catch (Exception ex)
             {
-                
                 MessageBox.Show(ex.Message);
             }
         }
         private void BorrowingBook_Load(object sender, EventArgs e)
         {
-            if (Form1.LoggedInReader != null)
+            if (Library.LoggedInReader != null)
             {
 
-                textBox1.Text = Form1.LoggedInReader.FirstName;
-                textBox2.Text = Form1.LoggedInReader.LastName;
-                textBox3.Text = Form1.LoggedInReader.Id.ToString();
+                textBox1.Text = Library.LoggedInReader.FirstName;
+                textBox2.Text = Library.LoggedInReader.LastName;
+                textBox3.Text = Library.LoggedInReader.Id.ToString();
                 textBox1.ReadOnly = true;
                 textBox2.ReadOnly = true;
                 textBox3.ReadOnly = true;

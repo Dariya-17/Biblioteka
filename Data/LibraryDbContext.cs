@@ -32,7 +32,7 @@ namespace Data
                 var builder = new ConfigurationBuilder();
                 builder.AddJsonFile("nz.json");
                 var config = builder.Build();
-                string conString = config.GetConnectionString("DefaultConnection");
+                string conString = config.GetConnectionString("Default1Connection");
                 optionsBuilder.UseSqlServer(conString);
             }
         }

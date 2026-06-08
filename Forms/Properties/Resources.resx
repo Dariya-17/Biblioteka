@@ -151,6 +151,9 @@
   <data name="day-authors-2023" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\day-authors-2023.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="iStock-506062932-1020x724" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\iStock-506062932-1020x724.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="stack-of-books-on-a-brown-background-concept-for-world-book-day-photo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\stack-of-books-on-a-brown-background-concept-for-world-book-day-photo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -159,5 +162,8 @@
   </data>
   <data name="oio" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\oio.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="360_F_236346950_nZr0IKxEq4rH5dxn7WY1mibokSD0BoLo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\360_F_236346950_nZr0IKxEq4rH5dxn7WY1mibokSD0BoLo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -23,13 +23,13 @@ namespace Forms
         {
             try
             {
-           
-                string title = textBox1.Text;             
-                int currentReaderId = Form1.LoggedInReader.Id;              
-                string result = await borrowingController.ReturnBookByTitle(title, currentReaderId);            
-                MessageBox.Show(result);          
+                string title = textBox1.Text;
+                int currentReaderId = Library.LoggedInReader.Id;           
+                DateTime selectedDate = dateTimePicker1.Value;         
+                string result = await borrowingController.ReturnBookByTitle(title, currentReaderId, selectedDate);
+                MessageBox.Show(result);
                 textBox1.Clear();
-                if (result == "Книгата беше върната успешно")
+               if (result == "Книгата беше върната успешно")
                 {
                     DialogResult = DialogResult.OK;
                     this.Close();
@@ -37,7 +37,6 @@ namespace Forms
             }
             catch (Exception ex)
             {
-           
                 MessageBox.Show(ex.Message);
             }
         }
@@ -50,6 +49,11 @@ namespace Forms
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void ReturnedBook_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

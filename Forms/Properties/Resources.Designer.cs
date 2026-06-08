@@ -63,6 +63,16 @@ namespace Forms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _360_F_236346950_nZr0IKxEq4rH5dxn7WY1mibokSD0BoLo {
+            get {
+                object obj = ResourceManager.GetObject("360_F_236346950_nZr0IKxEq4rH5dxn7WY1mibokSD0BoLo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _360_F_294526635_8Fc9IbBHWOC83JsiFNRNx5VivafEjiyi {
             get {
                 object obj = ResourceManager.GetObject("360_F_294526635_8Fc9IbBHWOC83JsiFNRNx5VivafEjiyi", resourceCulture);
@@ -126,6 +136,16 @@ namespace Forms.Properties {
         internal static System.Drawing.Bitmap images {
             get {
                 object obj = ResourceManager.GetObject("images", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap iStock_506062932_1020x724 {
+            get {
+                object obj = ResourceManager.GetObject("iStock-506062932-1020x724", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

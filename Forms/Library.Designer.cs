@@ -1,6 +1,6 @@
 ﻿namespace Forms
 {
-    partial class Form1
+    partial class Library
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Library));
             label1 = new Label();
             label2 = new Label();
             textBox1 = new TextBox();

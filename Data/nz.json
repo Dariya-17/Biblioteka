@@ -1,6 +1,7 @@
 {
   "ConnectionStrings": {
     "DefaultConnection": "Server=STUDENT20;Database=Biblioteka-26.05;Trusted_Connection=true;TrustServerCertificate=true",
-    "DariyaConnectionMG": "Server=(localdb)\\MSSQLLocalDB;Database=Biblioteka-26.05;Trusted_Connection=true;TrustServerCertificate=true"
+    "DariyaConnectionMG": "Server=(localdb)\\MSSQLLocalDB;Database=Biblioteka-26.05;Trusted_Connection=true;TrustServerCertificate=true",
+    "Default1Connection": "Server=STUDENT20;Database=Biblioteka--06.08;Trusted_Connection=true;TrustServerCertificate=true"
   }
 }
