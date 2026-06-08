@@ -118,43 +118,46 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="readliverpool-GettyImages-874160980-900by5001" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\readliverpool-GettyImages-874160980-900by5001.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="VEmF86yqEe" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\VEmF86yqEe.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="day-authors-2023" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\day-authors-2023.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="man-with-the-inscription-admin-icon-outline-man-with-the-inscription-admin-vector-icon-color-flat-isolated-2H36T8M" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\man-with-the-inscription-admin-icon-outline-man-with-the-inscription-admin-vector-icon-color-flat-isolated-2H36T8M.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="readliverpool-GettyImages-874160980-900by500" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\readliverpool-GettyImages-874160980-900by500.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="images" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\images.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="4b0dac97-b4fa-4c56-98ba-257dc290a0dc_1080x1080" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\4b0dac97-b4fa-4c56-98ba-257dc290a0dc_1080x1080.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="stack-of-books-on-a-brown-background-concept-for-world-book-day-photo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\stack-of-books-on-a-brown-background-concept-for-world-book-day-photo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="360_F_294526635_8Fc9IbBHWOC83JsiFNRNx5VivafEjiyi" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\360_F_294526635_8Fc9IbBHWOC83JsiFNRNx5VivafEjiyi.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="book-pile-of-must-read-books-scaled1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\book-pile-of-must-read-books-scaled1.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="readliverpool-GettyImages-874160980-900by5001" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\readliverpool-GettyImages-874160980-900by5001.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="book-genres-on-shelf-1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\book-genres-on-shelf-1.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="readliverpool-GettyImages-874160980-900by500" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\readliverpool-GettyImages-874160980-900by500.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="maxresdefault" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\maxresdefault.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="book-pile-of-must-read-books-scaled1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\book-pile-of-must-read-books-scaled1.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="VEmF86yqEe" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\VEmF86yqEe.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="man-with-the-inscription-admin-icon-outline-man-with-the-inscription-admin-vector-icon-color-flat-isolated-2H36T8M" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\man-with-the-inscription-admin-icon-outline-man-with-the-inscription-admin-vector-icon-color-flat-isolated-2H36T8M.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="4b0dac97-b4fa-4c56-98ba-257dc290a0dc_1080x1080" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\4b0dac97-b4fa-4c56-98ba-257dc290a0dc_1080x1080.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="360_F_367357209_BG07SVnnB4HSHSaMiHajfZhrZZAE859A" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\360_F_367357209_BG07SVnnB4HSHSaMiHajfZhrZZAE859A.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="day-authors-2023" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\day-authors-2023.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="stack-of-books-on-a-brown-background-concept-for-world-book-day-photo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\stack-of-books-on-a-brown-background-concept-for-world-book-day-photo.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="images" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\images.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="oio" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\oio.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

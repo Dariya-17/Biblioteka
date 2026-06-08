@@ -154,6 +154,16 @@ namespace Forms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap oio {
+            get {
+                object obj = ResourceManager.GetObject("oio", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap readliverpool_GettyImages_874160980_900by500 {
             get {
                 object obj = ResourceManager.GetObject("readliverpool-GettyImages-874160980-900by500", resourceCulture);

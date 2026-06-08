@@ -95,6 +95,37 @@ namespace Controller
                 .Where(b => b.ReturnedDate == null && (b.Reader.FirstName==fName || b.Reader.LastName==lname))
                 .ToListAsync();
         }
+        public async Task<string> ReturnBookByTitle(string bookTitle, int readerId)
+        {
+            if (string.IsNullOrWhiteSpace(bookTitle))
+            {
+                return "Моля, въведете заглавие на книга";
+            }
+            string cleanTitle = bookTitle; 
+            bool bookExistsInLibrary = await context.Books
+                .AnyAsync(b => b.Title == cleanTitle);
+            if (!bookExistsInLibrary)
+            {
+                return "В библиотеката няма книга с такова заглавие";
+            }
+            var borrowing = await context.Borrowings
+                .Include(b => b.Book)
+                .FirstOrDefaultAsync(b => b.ReaderId == readerId &&
+                                          b.Book.Title == cleanTitle &&
+                                         b.ReturnedDate == null);
+            if (borrowing == null)
+            {
+                return "Ти не си заел тази книга (или вече си я върнал)";
+            }
+  
+            if (borrowing.Book != null)
+            {
+                borrowing.Book.AvailableCopies++;
+            }
+            borrowing.ReturnedDate = DateTime.Now;
+            await context.SaveChangesAsync();
+            return "Книгата беше върната успешно";
+        }
     }
 }
 

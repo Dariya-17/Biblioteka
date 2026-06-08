@@ -33,12 +33,13 @@
             button3 = new Button();
             pictureBox1 = new PictureBox();
             label1 = new Label();
+            button5 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(175, 248);
+            button1.Location = new Point(115, 251);
             button1.Margin = new Padding(4, 3, 4, 3);
             button1.Name = "button1";
             button1.Size = new Size(167, 123);
@@ -49,7 +50,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(175, 108);
+            button2.Location = new Point(232, 108);
             button2.Margin = new Padding(4, 3, 4, 3);
             button2.Name = "button2";
             button2.Size = new Size(167, 115);
@@ -89,12 +90,23 @@
             label1.TabIndex = 4;
             label1.Text = "Welcome,Reader!";
             // 
+            // button5
+            // 
+            button5.Location = new Point(12, 108);
+            button5.Name = "button5";
+            button5.Size = new Size(167, 115);
+            button5.TabIndex = 6;
+            button5.Text = "Return";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
             // ReaderFF
             // 
             AutoScaleDimensions = new SizeF(11F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Zoom;
             ClientSize = new Size(800, 442);
+            Controls.Add(button5);
             Controls.Add(label1);
             Controls.Add(pictureBox1);
             Controls.Add(button3);
@@ -118,5 +130,6 @@
         private Button button3;
         private PictureBox pictureBox1;
         private Label label1;
+        private Button button5;
     }
 }
