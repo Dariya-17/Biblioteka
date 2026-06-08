@@ -31,42 +31,33 @@ namespace Forms
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            string username = textBox1.Text;
-            string password = textBox2.Text;
-            string password2 = textBox3.Text;
-            string fnama = textBox4.Text;
-            string lname = textBox5.Text;
-            string email = textBox6.Text;
-            string phone = textBox7.Text;       
-            if (string.IsNullOrWhiteSpace(username))
+            try
             {
-                MessageBox.Show("Невалидно потребителско име");                
-                return;
+                string username = textBox1.Text;
+                string password = textBox2.Text;
+                string password2 = textBox3.Text;
+                string fname = textBox4.Text;
+                string lname = textBox5.Text;
+                string email = textBox6.Text;
+                string phone = textBox7.Text;
+                RoleType role = RoleType.Reader;    
+                bool isSuccess = await controller.Register(username, password, password2, fname, lname, email, phone, role);
+                if (isSuccess)
+                {
+                    MessageBox.Show("Успешна регистрация");
+                    DialogResult = DialogResult.OK;
+                 this.Close();
+                }
             }
-            if (string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(password2))
+            catch (Exception ex)
             {
-                MessageBox.Show("Невалидна парола");              
-                return;
-            }
-            if (password2 != password)
-            {
-                MessageBox.Show("Паролите не съвпадат");              
-                return;
-            }        
-            Controller.RegisterLoginController controller = new Controller.RegisterLoginController();       
-            bool isTaken = await controller.IsUsernameTaken(username);
-            if (isTaken)
-            {
-                MessageBox.Show("Потребителското име вече е заето.");
-                textBox1.Clear();              
-                return; 
-            }
-            RoleType role = RoleType.Reader;         
-            if (await controller.Register(username, password, fnama, lname, email, phone, role) == true)
-            {
-                MessageBox.Show("Успешна регистрация");
-                DialogResult = DialogResult.OK;          
-                this.Close(); 
+         
+                MessageBox.Show(ex.Message);   
+                if (ex.Message.Contains("заето"))
+                {
+                    textBox1.Clear();
+                    return;
+                }
             }
             textBox1.Clear();
             textBox2.Clear();
@@ -75,7 +66,9 @@ namespace Forms
             textBox5.Clear();
             textBox6.Clear();
             textBox7.Clear();
+
         }
+    
 
         private void button2_Click(object sender, EventArgs e)
         {

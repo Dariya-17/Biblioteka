@@ -27,63 +27,109 @@ namespace Controller
 
         public async Task<User> Login(string username, string password)
         {
-            return await context.Users.Include(u => u.Borrowings) 
-                .ThenInclude(b => b.Book)   
-                .Include(u => u.Books)        
+
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            {
+                throw new Exception("Потребителското име и паролата са задължителни за вход!");
+            }
+            var user = await context.Users.Include(u => u.Borrowings)
+                .ThenInclude(b => b.Book)
+                .Include(u => u.Books)
                 .FirstOrDefaultAsync(u => u.UserName == username && u.Password == password);
+
+            if (user == null)
+            {
+                throw new Exception("Грешно потребителско име или парола");
+            }
+
+            return user;
         }
-        public async Task<string> RegisterAdmin(string username, string password, RoleType role)
-        {     
-                if (await context.Users.AnyAsync(u => u.UserName == username))
-                {
-                    return "Потребителското име вече е заето";
-                }
-                var newAdmin = new User
-                {
-                    UserName = username,
-                    Password = password,
-                    Role = RoleType.Admin 
-                };
-                await context.Users.AddAsync(newAdmin);
-                await context.SaveChangesAsync();
-                return "Успешна регистрация";       
+        public async Task<string> RegisterAdmin(string username, string password,string pass2, RoleType role)
+        {
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            {
+                throw new Exception("Всички полета са задължителни за администратор");
+            }
+            if(password != pass2)
+            {
+                throw new Exception("Паролите не съвпадат");
+            }       
+            if (await context.Users.AnyAsync(u => u.UserName == username))
+            {
+                return "Потребителското име вече е заето";
+            }
+
+            var newAdmin = new User
+            {
+                UserName = username.Trim(),
+                Password = password,
+                Role = RoleType.Admin
+            };
+            await context.Users.AddAsync(newAdmin);
+            await context.SaveChangesAsync();
+            return "Успешна регистрация";
         }
         public async Task<bool> IsUsernameTaken(string username)
         {
-            return await context.Users.AnyAsync(u => u.UserName == username);
+            if (string.IsNullOrWhiteSpace(username)) return false;
+            return await context.Users.AnyAsync(u => u.UserName == username.Trim());
         }
-        public async Task<bool> Register(string username, string password, string firstName, string lastName, string email, string phone, RoleType role)
-        { 
-            if (await context.Users.AnyAsync(u => u.UserName == username))
+        public async Task<bool> Register(string username, string password, string password2, string firstName, string lastName, string email, string phone, RoleType role)
+        {
+
+            if (string.IsNullOrWhiteSpace(username))
             {
-                return false;
-            }    
+                throw new Exception("Невалидно потребителско име");
+            }
+            if (string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(password2))
+            {
+                throw new Exception("Невалидна парола");
+            }
+            if (password != password2)
+            {
+                throw new Exception("Паролите не съвпадат");
+            }
+            if (role == RoleType.Reader)
+            {
+                if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName))
+                {
+                    throw new Exception("Името и фамилията са задължителни за регистрация на читател!");
+                }
+                if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(phone))
+                {
+                    throw new Exception("Имейлът и телефонният номер са задължителни ");
+                }
+            }
+            if (await context.Users.AnyAsync(u => u.UserName == username.Trim()))
+            {
+                throw new Exception("Потребителското име вече е заето.");
+            }
             var newUser = new User
             {
-                UserName = username,
+                UserName = username.Trim(),
                 Password = password,
                 Role = role
             };
             await context.Users.AddAsync(newUser);
-            await context.SaveChangesAsync(); 
+            await context.SaveChangesAsync();
             if (role == RoleType.Reader)
             {
                 var newReader = new Reader
                 {
-                    FirstName = firstName,
-                    LastName = lastName,
-                    Email = email,
-                    PhoneNumber = phone,         
+                    FirstName = firstName.Trim(),
+                    LastName = lastName.Trim(),
+                    Email = email.Trim(),
+                    PhoneNumber = phone.Trim(),
                     UserId = newUser.Id
                 };
 
                 await context.Readers.AddAsync(newReader);
-                await context.SaveChangesAsync(); 
+                await context.SaveChangesAsync();
             }
             return true;
         }
-       
     }
 }
+
 
 

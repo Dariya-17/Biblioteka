@@ -24,10 +24,10 @@ namespace Forms
         {
             try
             {
-                var allBooks = await _booksController.GetAll();
+                var allAvailableBooks = await _booksController.GetAvailable();
 
-                var freeBooks = allBooks
-                    .Where(b => b.AvailableCopies > 0)
+                var freeBooks = allAvailableBooks
+                       .Where(b => b.AvailableCopies > 0)
                     .Select(b => new
                     {
                         b.Id,
@@ -38,10 +38,7 @@ namespace Forms
                         b.AvailableCopies
                     }).ToList();
                 dataGridView1.DataSource = freeBooks;
-                if (freeBooks.Count == 0)
-                {
-                    MessageBox.Show("В момента няма свободни книги в библиотеката.");
-                }
+              
             }
             catch (Exception ex)
             {

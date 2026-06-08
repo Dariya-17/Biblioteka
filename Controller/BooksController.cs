@@ -26,12 +26,41 @@ namespace Controller
         }
         public async Task<List<Books>> GetAvailable()
         {
-           return await context.Books.Include(b => b.Author).Where(b => b.AvailableCopies > 0).ToListAsync();
+            var availableBooks = await context.Books
+          .Include(b => b.Author)
+          .Include(b => b.Genre)
+          .Where(b => b.AvailableCopies > 0)
+          .ToListAsync();
+            if (availableBooks == null || availableBooks.Count == 0)
+            {
+                throw new Exception("В момента няма свободни книги в библиотеката.");
+            }
+
+            return availableBooks;
         }
-        public async Task AddAsync(string title, int authorId, int genreId, int copies)
+        public async Task<string> AddAsync(string title, int authorId, int genreId, int copies)
         {
-            context.Books.Add(new Books { Title = title, AuthorId = authorId, GenreId = genreId, AvailableCopies = copies });
+            if (string.IsNullOrWhiteSpace(title))
+            {
+                return " Заглавието на книгата е задължително!";
+            }
+            if (authorId <= 0 || genreId <= 0)
+            {
+                return " Изберете валиден автор и жанр!";
+            }
+            if (copies < 0)
+            {
+                return " Броят копия не може да бъде отрицателно число!";
+            }       
+            bool isTaken = await IsBookTitleTaken(title);
+            if (isTaken)
+            {
+                return $" Книга със заглавие '{title.Trim()}' вече съществува";
+            }
+
+            context.Books.Add(new Books { Title = title.Trim(), AuthorId = authorId, GenreId = genreId, AvailableCopies = copies });
             await context.SaveChangesAsync();
+            return "Книгата беше добавена успешно";
         }
         public async Task<List<Books>> GetByTitle(string title)
         {
@@ -43,7 +72,7 @@ namespace Controller
             return await context.Books
                 .Include(b => b.Author)
                 .Include(b => b.Genre)
-                .Where(b => b.Title== title)
+                .Where(b => b.Title.Trim() == title.Trim())
                 .ToListAsync();
         }
         public async Task<bool> DeleteById(int id)

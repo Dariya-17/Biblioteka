@@ -22,23 +22,46 @@ namespace Controller
         }
         public async Task<List<Borrowing>> GetActiveBorrowings()
         {
-           return await context.Borrowings.Include(b => b.Reader).Include(b => b.Book).Where(b => b.ReturnedDate == null).ToListAsync();
+            return await context.Borrowings.Include(b => b.Reader).Include(b => b.Book).Where(b => b.ReturnedDate == null).ToListAsync();
         }
-        public async Task<bool> BorrowBook(int readerId, int bookId)
-        {
-            var book = await context.Books.FindAsync(bookId);
-            if (book == null || book.AvailableCopies <= 0)
-                return false;
-            book.AvailableCopies--;  
-            context.Borrowings.Add(new Borrowing
+
+            public async Task<bool> BorrowBook(int readerId, string rawBookId)
             {
-                ReaderId = readerId,
-                BookId = bookId,
-                BorrowedDate = DateTime.Now 
-            });
-           await context.SaveChangesAsync();
-            return true;
-        }
+
+                if (string.IsNullOrWhiteSpace(rawBookId) || !int.TryParse(rawBookId, out int bookId))
+                {
+                    throw new Exception("Моля, въведете валидно цифрово ID на книгата");
+                }
+
+                if (bookId <= 0 || readerId <= 0)
+                {
+                    throw new Exception("Невалидно ID на книга или читател");
+                }
+
+                var book = await context.Books.FindAsync(bookId);
+                if (book == null)
+                {
+                    throw new Exception("Избраната книга не съществува ");
+                }
+
+                if (book.AvailableCopies <= 0)
+                {
+                    throw new Exception($"Книгата '{book.Title}' е изчерпана");
+                }
+
+              
+                book.AvailableCopies--;
+                context.Borrowings.Add(new Borrowing
+                {
+                    ReaderId = readerId,
+                    BookId = bookId,
+                    BorrowedDate = DateTime.Now
+                });
+
+                await context.SaveChangesAsync();
+                return true;
+
+            }
         public async Task<string> ReturnBook(int borrowingId)
         {
             if (borrowingId <= 0)

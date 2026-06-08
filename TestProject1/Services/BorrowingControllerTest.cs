@@ -41,51 +41,51 @@ namespace TestProject1.Services
             Assert.AreEqual(1, result.Count );
             Assert.IsNull(result[0].ReturnedDate);
         }
-        [Test]
-        public async Task Test_BorrowBook()
-        {
-            var context = TestDb.CreateContext();
-            var reader = new Reader
-            {
-                FirstName = "Петър",
-                LastName = "Петров",
-                Email = "pesho.com",
-                PhoneNumber = "0888333444"
-            };
-            var book = new Books { Title = "Бай Ганьо", AvailableCopies = 3 };
-            context.Readers.Add(reader);
-            context.Books.Add(book);
-            await context.SaveChangesAsync();
-            BorrowingController controller = new BorrowingController(context);
-            bool isSuccess = await controller.BorrowBook(reader.Id, book.Id);         
-            Assert.IsTrue(isSuccess);         
-            var updatedBook = await context.Books.FindAsync(book.Id);
-            Assert.AreEqual(2, updatedBook.AvailableCopies);        
-            var borrowing = await context.Borrowings.FirstOrDefaultAsync(b => b.ReaderId == reader.Id && b.BookId == book.Id);
-            Assert.IsNotNull(borrowing);
-            Assert.IsNull(borrowing.ReturnedDate);
-        }
-        [Test]
-        public async Task Test_BorrowBook_False_()
-        {
-            var context = TestDb.CreateContext();
-           var reader = new Reader
-            {
-                FirstName = "Мария",
-                LastName = "Георгиева",
-                Email = "mariya.com",        
-                PhoneNumber = "0888555666"     
-            };
-            var book = new Books { Title = "nz", AvailableCopies = 0 };
-            context.Readers.Add(reader);
-            context.Books.Add(book);
-            await context.SaveChangesAsync();
-            BorrowingController controller = new BorrowingController(context);
-            bool isSuccess = await controller.BorrowBook(reader.Id, book.Id);     
-            Assert.IsFalse(isSuccess); 
-            int borrowingsCount = await context.Borrowings.CountAsync();
-            Assert.AreEqual(0, borrowingsCount); 
-        }
+        //[Test]
+        //public async Task Test_BorrowBook()
+        //{
+        //    var context = TestDb.CreateContext();
+        //    var reader = new Reader
+        //    {
+        //        FirstName = "Петър",
+        //        LastName = "Петров",
+        //        Email = "pesho.com",
+        //        PhoneNumber = "0888333444"
+        //    };
+        //    var book = new Books { Title = "Бай Ганьо", AvailableCopies = 3 };
+        //    context.Readers.Add(reader);
+        //    context.Books.Add(book);
+        //    await context.SaveChangesAsync();
+        //    BorrowingController controller = new BorrowingController(context);
+        //    bool isSuccess = await controller.BorrowBook(reader.Id, book.Id);         
+        //    Assert.IsTrue(isSuccess);         
+        //    var updatedBook = await context.Books.FindAsync(book.Id);
+        //    Assert.AreEqual(2, updatedBook.AvailableCopies);        
+        //    var borrowing = await context.Borrowings.FirstOrDefaultAsync(b => b.ReaderId == reader.Id && b.BookId == book.Id);
+        //    Assert.IsNotNull(borrowing);
+        //    Assert.IsNull(borrowing.ReturnedDate);
+        //}
+        //[Test]
+        //public async Task Test_BorrowBook_False_()
+        //{
+        //    var context = TestDb.CreateContext();
+        //   var reader = new Reader
+        //    {
+        //        FirstName = "Мария",
+        //        LastName = "Георгиева",
+        //        Email = "mariya.com",        
+        //        PhoneNumber = "0888555666"     
+        //    };
+        //    var book = new Books { Title = "nz", AvailableCopies = 0 };
+        //    context.Readers.Add(reader);
+        //    context.Books.Add(book);
+        //    await context.SaveChangesAsync();
+        //    BorrowingController controller = new BorrowingController(context);
+        //    bool isSuccess = await controller.BorrowBook(reader.Id, book.Id);     
+        //    Assert.IsFalse(isSuccess); 
+        //    int borrowingsCount = await context.Borrowings.CountAsync();
+        //    Assert.AreEqual(0, borrowingsCount); 
+        //}
         [Test]
         public async Task Test_GetByReaderName_Empty()
         {

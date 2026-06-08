@@ -44,23 +44,23 @@ namespace Forms
         }
         private async void button2_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBox4.Text))
+            try
             {
-                MessageBox.Show(" въведете ID на книгата");
-                return;
-            }
-            int bookId = int.Parse(textBox4.Text);
-            int readerId = Form1.LoggedInReader.Id;
-            BorrowingController borrowingController = new BorrowingController();
-            bool isSuccess = await borrowingController.BorrowBook(readerId, bookId);
-            if (isSuccess)
-            {
-                MessageBox.Show("Книгата беше заета успешно");
+                int readerId = Form1.LoggedInReader.Id;
 
+               
+                bool isSuccess = await _borrowingController.BorrowBook(readerId, textBox4.Text);
+
+                if (isSuccess)
+                {
+                    MessageBox.Show("Книгата беше заета успешно");
+                    textBox4.Clear();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(" Книгата не съществува или няма останали свободни бройки!");
+                
+                MessageBox.Show(ex.Message);
             }
         }
         private void BorrowingBook_Load(object sender, EventArgs e)

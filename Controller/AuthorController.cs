@@ -26,24 +26,32 @@ namespace Controller
         }
         public async Task<Author> GetAuthorById(int id)
         {
+            if (id <= 0)
+            {
+                throw new Exception("Моля, въведете валидно ID на автор!");
+            }
             return await DbContext.Authors.FindAsync(id);
         }
-        public async Task<string> AddAuthor(string f,string l)
+        public async Task<string> AddAuthor(string f, string l)
         {
+      
             if (string.IsNullOrWhiteSpace(f) || string.IsNullOrWhiteSpace(l))
             {
-                return " Първото име и фамилията на автора са задължителни";
+                throw new Exception("Първото име и фамилията на автора са задължителни");
             }
-            f = f;
-            l = l;   
+            f = f.Trim();
+            l = l.Trim();
             bool authorExists = await IsAuthorExisting(f, l);
             if (authorExists)
             {
-                return $" Авторът '{f} {l}' вече съществува ";
-            }    
-            Author a = new Author();
-            a.FirstName = f;
-            a.LastName = l;
+                throw new Exception($"Авторът '{f} {l}' вече съществува ");
+            }
+
+            Author a = new Author
+            {
+                FirstName = f,
+                LastName = l
+            };
 
             DbContext.Authors.Add(a);
             await DbContext.SaveChangesAsync();
@@ -52,13 +60,20 @@ namespace Controller
         }
         public async Task<Author> GetByName(string name,string ls)
         {
+          
             if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(ls))
             {
-                return null;
+                throw new Exception("Моля, въведете както име, така и фамилия ");
+            }
+            var author = await DbContext.Authors
+                .FirstOrDefaultAsync(a => a.FirstName.Trim() == name.Trim() && a.LastName.Trim() == ls.Trim());
+
+            if (author == null)
+            {
+                throw new Exception($"Няма намерен автор с имената '{name.Trim()} {ls.Trim()}'!");
             }
 
-            return await DbContext.Authors
-                .FirstOrDefaultAsync(a => a.FirstName == name.Trim() && a.LastName == ls.Trim());
+            return author;
         }
         public async Task<bool> IsAuthorExisting(string firstName, string lastName)
         {

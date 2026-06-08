@@ -21,22 +21,17 @@ namespace Forms
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            string j = textBox1.Text;
-            if (string.IsNullOrEmpty(j))
-            {
-                MessageBox.Show("Невалидно име на жанр");
-                return;
+            try
+            {         
+                string successMessage = await genre.Add(textBox1.Text);        
+                MessageBox.Show(successMessage);
+                textBox1.Clear();                              
             }
-            bool genreExists = await genre.IsGenreExisting(j);
-            if (genreExists)
+            catch (Exception ex)
             {
-                MessageBox.Show("Този жанр вече съществува ");
-                textBox1.Clear(); 
-                return; 
-            }    
-            await genre.Add(j);
-            MessageBox.Show("Успешно добавяне на жанр");
-            textBox1.Clear();
+               
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private async void button2_Click(object sender, EventArgs e)

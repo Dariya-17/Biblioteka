@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Controller
 {
-   public class GenreController
+    public class GenreController
     {
         private readonly LibraryDbContext context = new LibraryDbContext();
         public GenreController()
@@ -28,24 +28,24 @@ namespace Controller
         {
             if (string.IsNullOrWhiteSpace(name))
             {
-                return " Името на жанра е задължително";
-            }   
-            name = name.Trim();    
+                throw new Exception("Невалидно име на жанр ");
+            }
+            name = name.Trim();
             bool genreExists = await IsGenreExisting(name);
             if (genreExists)
             {
-                return $" Жанрът {name} вече съществува ";
-            }       
+                throw new Exception($"Този жанр {name} вече съществува");
+            }
             context.Genres.Add(new Genre { Name = name });
             await context.SaveChangesAsync();
 
-            return "Жанрът беше добавен успешно";
+            return "Успешно добавяне на жанр";
         }
         public async Task<List<Genre>> GetByName(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
-                return  new List<Genre>();
-            return await context.Genres.Where(g => g.Name==name).ToListAsync();
+                return new List<Genre>();
+            return await context.Genres.Where(g => g.Name.Trim() == name.Trim()).ToListAsync();
         }
         public async Task<Genre> GetByNameID(string name)
         {
@@ -55,7 +55,7 @@ namespace Controller
             }
 
             return await context.Genres
-                .FirstOrDefaultAsync(g => g.Name.Trim() == name.Trim()); ;
+                .FirstOrDefaultAsync(g => g.Name.Trim() == name.Trim());
         }
         public async Task<bool> IsGenreExisting(string name)
         {
@@ -69,4 +69,5 @@ namespace Controller
         }
     }
 }
+
 

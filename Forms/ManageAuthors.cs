@@ -24,43 +24,45 @@ namespace Forms
         {
 
         }
-
         private async void button2_Click(object sender, EventArgs e)
         {
-            var authorsList = await _authorController.GetAllAuthors();
-            dataGridView1.DataSource = authorsList.Select(a => new
+            try
             {
-                a.Id,
-                a.FirstName,
-                a.LastName
-            }).ToList();
+                var authorsList = await _authorController.GetAllAuthors();
+                dataGridView1.DataSource = authorsList.Select(a => new
+                {
+                    a.Id,
+                    a.FirstName,
+                    a.LastName
+                }).ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show( ex.Message);
+            }
 
-        }
-
-       
+        } 
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox2.Text))
+            try
             {
-                MessageBox.Show(" Попълнете както името и фамилията на автора");
-                return;
-            }
-
-            string firstName = textBox1.Text;
-            string lastName = textBox2.Text;
-            bool authorExists = await _authorController.IsAuthorExisting(firstName, lastName);
-            if (authorExists)
-            {
-                MessageBox.Show("Този автор вече съществува ");
+                string firstName = textBox1.Text;
+                string lastName = textBox2.Text; 
+                string resultMessage = await _authorController.AddAuthor(firstName, lastName);
+                MessageBox.Show(resultMessage);
                 textBox1.Clear();
-                textBox2.Clear();
-                return; 
+                textBox2.Clear();        
             }
-            string resultMessage = await _authorController.AddAuthor(firstName, lastName);
-            MessageBox.Show(resultMessage);
-            textBox1.Clear();
-            textBox2.Clear();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                if (ex.Message.Contains("съществува"))
+                {
+                    textBox1.Clear();
+                    textBox2.Clear();
+                }
+            }
 
         }
 
@@ -71,25 +73,23 @@ namespace Forms
 
         private async void button4_Click(object sender, EventArgs e)
         {
-            string searchFirstName = textBox1.Text; 
-            string searchLastName = textBox2.Text;            
-            AuthorController authorController = new AuthorController();          
-            Author foundAuthor = await authorController.GetByName(searchFirstName, searchLastName); 
-            if (foundAuthor != null)
+            try
             {
-     
-              var authorList = new List<Author> { foundAuthor };       
-              dataGridView1.DataSource = authorList.Select(a => new
+                string searchFirstName = textBox1.Text;
+                string searchLastName = textBox2.Text;           
+                Author foundAuthor = await _authorController.GetByName(searchFirstName, searchLastName);             
+                var authorList = new List<Author> { foundAuthor };
+                dataGridView1.DataSource = authorList.Select(a => new
                 {
-                a.Id,
-                 a.FirstName,
-                 a.LastName,   
-                }).ToList(); 
+                    a.Id,
+                    a.FirstName,
+                    a.LastName,
+                }).ToList();
             }
-            else
-            { 
+            catch (Exception ex)
+            {         
                 dataGridView1.DataSource = null;
-                MessageBox.Show("Няма намерен автор с тези имена");
+                MessageBox.Show(ex.Message);
             }
         }
     }

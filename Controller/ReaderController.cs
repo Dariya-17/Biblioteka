@@ -38,7 +38,7 @@ namespace Controller
             }         
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
-                return " Потребителското име и паролата са задължителни!";
+                return " Потребителското име и паролата са задължителни";
             }
             firstName = firstName;
             lastName = lastName;
@@ -48,7 +48,7 @@ namespace Controller
             bool isUsernameTaken = await context.Users.AnyAsync(u => u.UserName == username);
             if (isUsernameTaken)
             {
-                return $" Потребителското име '{username}' вече е заето!";
+                return $" Потребителското име '{username}' вече е заето";
             }       
             bool readerExists = await context.Readers.AnyAsync(r => r.Email == email || (r.FirstName == firstName && r.LastName == lastName));
             if (readerExists)
