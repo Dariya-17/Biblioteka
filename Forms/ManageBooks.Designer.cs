@@ -186,7 +186,7 @@
             // 
             // button5
             // 
-            button5.Location = new Point(851, 99);
+            button5.Location = new Point(826, 57);
             button5.Name = "button5";
             button5.Size = new Size(119, 48);
             button5.TabIndex = 13;
@@ -196,9 +196,9 @@
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(797, 58);
+            textBox3.Location = new Point(963, 9);
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(198, 35);
+            textBox3.Size = new Size(69, 35);
             textBox3.TabIndex = 14;
             // 
             // label5
@@ -206,7 +206,7 @@
             label5.AutoSize = true;
             label5.BackColor = Color.White;
             label5.Font = new Font("Yu Gothic", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
-            label5.Location = new Point(468, 29);
+            label5.Location = new Point(433, 9);
             label5.Name = "label5";
             label5.Size = new Size(512, 26);
             label5.TabIndex = 15;

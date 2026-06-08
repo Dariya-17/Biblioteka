@@ -36,6 +36,7 @@
             label1 = new Label();
             button4 = new Button();
             button6 = new Button();
+            button7 = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -130,12 +131,24 @@
             button6.UseVisualStyleBackColor = false;
             button6.Click += button6_Click;
             // 
+            // button7
+            // 
+            button7.BackColor = Color.Khaki;
+            button7.Location = new Point(693, 179);
+            button7.Name = "button7";
+            button7.Size = new Size(147, 72);
+            button7.TabIndex = 9;
+            button7.Text = "Late books for returning";
+            button7.UseVisualStyleBackColor = false;
+            button7.Click += button7_Click;
+            // 
             // Admin
             // 
             AutoScaleDimensions = new SizeF(11F, 22F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(931, 554);
+            Controls.Add(button7);
             Controls.Add(button6);
             Controls.Add(button4);
             Controls.Add(label1);
@@ -164,5 +177,6 @@
         private Label label1;
         private Button button4;
         private Button button6;
+        private Button button7;
     }
 }

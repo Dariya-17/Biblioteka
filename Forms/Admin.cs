@@ -66,8 +66,14 @@ namespace Forms
 
         private void button6_Click(object sender, EventArgs e)
         {
-            AllClientsReturnedBooks a=new AllClientsReturnedBooks();
+            AllClientsReturnedBooks a = new AllClientsReturnedBooks();
             a.ShowDialog();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            NotReturnedBooks n = new NotReturnedBooks();
+            n.ShowDialog();
         }
     }
 }
