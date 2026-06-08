@@ -51,21 +51,44 @@ namespace Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
-                if (ex.Message.Contains("заето"))
+                MessageBox.Show(ex.Message);         
+                if (ex.Message.Contains("не съвпадат"))
+                {
+                    textBox2.Clear();
+                    textBox3.Clear();
+                    return;
+                }
+         else if(ex.Message.Contains("не може да съдържа цифри"))
+                 {
+                    textBox4.Clear();
+                    textBox5.Clear();
+                    return;
+                }
+              else  if (ex.Message.Contains("заето"))
                 {
                     textBox1.Clear();
                     return;
                 }
+              else  if(ex.Message.Contains("Невалидна парола"))
+                {
+                    textBox2.Clear();
+                    textBox3.Clear();
+                    return;
+                }
+                else if(ex.Message.Contains("Невалиден имейл адрес"))
+                {
+                    textBox6.Clear();
+                    return;              
+                }
 
             }
-            textBox1.Clear();
-            textBox2.Clear();
-            textBox3.Clear();
-            textBox4.Clear();
-            textBox5.Clear();
-            textBox6.Clear();
-            textBox7.Clear();
+            //textBox1.Clear();
+            //textBox2.Clear();
+            //textBox3.Clear();
+            //textBox4.Clear();
+            //textBox5.Clear();
+            //textBox6.Clear();
+            //textBox7.Clear();
         }
     
 

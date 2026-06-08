@@ -30,6 +30,7 @@ namespace Controller
             {
                 throw new Exception("Невалидно име на жанр ");
             }
+
             name = name.Trim();
             bool genreExists = await IsGenreExisting(name);
             if (genreExists)
