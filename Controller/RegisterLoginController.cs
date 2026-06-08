@@ -85,19 +85,32 @@ namespace Controller
             {
                 throw new Exception("Невалидна парола");
             }
+
             if (password != password2)
             {
                 throw new Exception("Паролите не съвпадат");
             }
             if (role == RoleType.Reader)
             {
+                foreach (char c in firstName)
+                {
+                    if (char.IsDigit(c)) throw new Exception("Първото име не може да съдържа цифри");
+                }
+                foreach (char c in lastName)
+                {
+                    if (char.IsDigit(c)) throw new Exception("Фамилното име не може да съдържа цифри");
+                }
                 if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName))
                 {
-                    throw new Exception("Името и фамилията са задължителни за регистрация на читател!");
+                    throw new Exception("Името и фамилията са задължителни за регистрация на читател");
                 }
                 if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(phone))
                 {
                     throw new Exception("Имейлът и телефонният номер са задължителни ");
+                }
+                if (!email.Contains("@"))
+                {
+                    throw new Exception("Невалиден имейл адрес! Трябва да съдържа символа '@'.");
                 }
             }
             if (await context.Users.AnyAsync(u => u.UserName == username.Trim()))

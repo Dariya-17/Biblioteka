@@ -40,24 +40,24 @@ namespace Forms
                 string lname = textBox5.Text;
                 string email = textBox6.Text;
                 string phone = textBox7.Text;
-                RoleType role = RoleType.Reader;    
+                RoleType role = RoleType.Reader;
                 bool isSuccess = await controller.Register(username, password, password2, fname, lname, email, phone, role);
                 if (isSuccess)
                 {
                     MessageBox.Show("Успешна регистрация");
                     DialogResult = DialogResult.OK;
-                 this.Close();
+                    this.Close();
                 }
             }
             catch (Exception ex)
             {
-         
-                MessageBox.Show(ex.Message);   
+                MessageBox.Show(ex.Message);
                 if (ex.Message.Contains("заето"))
                 {
                     textBox1.Clear();
                     return;
                 }
+
             }
             textBox1.Clear();
             textBox2.Clear();
@@ -66,7 +66,6 @@ namespace Forms
             textBox5.Clear();
             textBox6.Clear();
             textBox7.Clear();
-
         }
     
 
