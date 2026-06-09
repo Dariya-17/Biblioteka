@@ -66,11 +66,11 @@ namespace Controller
                 throw new Exception("Моля, въведете както име, така и фамилия ");
             }
             var author = await DbContext.Authors
-                .FirstOrDefaultAsync(a => a.FirstName.Trim() == name.Trim() && a.LastName.Trim() == ls.Trim());
+                .FirstOrDefaultAsync(a => a.FirstName == name && a.LastName== ls);
 
             if (author == null)
             {
-                throw new Exception($"Няма намерен автор с имената '{name.Trim()} {ls.Trim()}'!");
+                throw new Exception($"Няма намерен автор с имената '{name} {ls}'!");
             }
 
             return author;

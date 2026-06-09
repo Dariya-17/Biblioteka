@@ -63,5 +63,10 @@ namespace Forms
         {
             Close();
         }
+
+        private void NotReturnedBooks_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

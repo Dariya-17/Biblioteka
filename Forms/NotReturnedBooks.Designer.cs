@@ -80,6 +80,7 @@
             Margin = new Padding(4, 3, 4, 3);
             Name = "NotReturnedBooks";
             Text = "NotReturnedBooks";
+            Load += NotReturnedBooks_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
